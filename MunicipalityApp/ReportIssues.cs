@@ -27,18 +27,14 @@ namespace MunicipalityApp
 
         }
 
-        // Populate categoryBox with predefined categories
-
-
-        //Back button to return to the main 
+        // Back button to return to the main 
         private void backBtn_Click(object sender, EventArgs e)
         {
             this.Close(); // Close the current form and go back to the main menu
-
         }
 
         // Event handler for the Attach button to select media files
-        private void attachFilesBtn_Click(object sender, EventArgs e)
+        private void attachBtn_Click(object sender, EventArgs e)
         {
             // Open a file dialog to allow users to attach files (images/documents)
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -47,16 +43,21 @@ namespace MunicipalityApp
                 Filter = "Images and Documents|*.jpg;*.jpeg;*.png;*.pdf;*.docx"
             };
 
+            // Show the file dialog once
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                // Loop through each selected file and add it to the list
                 foreach (string file in openFileDialog.FileNames)
                 {
                     attachments.Add(file);  // Add selected file paths to the list of attachments
                 }
 
+                // Show success message once the files have been selected
                 MessageBox.Show("Files have been successfully selected.", "Files Attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        // Save button event handler
         private void saveBtn_Click(object sender, EventArgs e)
         {
             // Retrieve data from the form controls
@@ -117,9 +118,15 @@ namespace MunicipalityApp
             descriptionTxt.Clear();
             attachments.Clear();  // Clear attached files list
         }
+    
+    private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
+        {
 
+        }
 
+      
+        }
     }
 
-}
+
    

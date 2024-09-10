@@ -31,6 +31,8 @@
             this.viewingLbl = new System.Windows.Forms.Label();
             this.viewLstVw = new System.Windows.Forms.ListView();
             this.backBtn = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // viewingLbl
@@ -65,17 +67,28 @@
             this.backBtn.UseVisualStyleBackColor = false;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(948, 230);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(400, 200);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 16;
+            this.pictureBox.TabStop = false;
+            // 
             // ViewingIssues
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(982, 653);
+            this.ClientSize = new System.Drawing.Size(1382, 653);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.viewLstVw);
             this.Controls.Add(this.viewingLbl);
             this.Name = "ViewingIssues";
             this.Text = "ViewingIssues";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -85,5 +98,6 @@
         private System.Windows.Forms.Label viewingLbl;
         private System.Windows.Forms.ListView viewLstVw;
         private System.Windows.Forms.Button backBtn;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }
