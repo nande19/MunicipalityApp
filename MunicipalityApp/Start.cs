@@ -28,8 +28,6 @@ namespace MunicipalityApp
             // Show the ReportIssues form
             reportForm.ShowDialog();  // Show the ReportIssues form as a modal dialog
 
-            // When the ReportIssues form is closed, show the Start form again
-            this.Show();  // Optionally show the Start form again when ReportIssues is closed
         }
 
         private void eventsBtn_Click(object sender, EventArgs e)

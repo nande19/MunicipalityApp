@@ -97,11 +97,17 @@ namespace MunicipalityApp
             // Clear the form fields for a new report
             ClearForm();
 
-            // Open the ViewingIssues form to show the list of issues
+            // Create and show the ViewingIssues form
             ViewingIssues viewingIssuesForm = new ViewingIssues(issueList);
-            viewingIssuesForm.FormClosed += (s, args) => this.Close();  // Close the ReportIssues form when ViewingIssues is closed
-            viewingIssuesForm.Show();  // Display the ViewingIssues form
 
+            // Hide the ReportIssues form
+            this.Hide();  // Hide the ReportIssues form
+
+            // Set up the FormClosed event to close the ReportIssues form when ViewingIssues is closed
+            viewingIssuesForm.FormClosed += (s, args) => this.Close();  // Close the ReportIssues form when ViewingIssues is closed
+
+            // Display the ViewingIssues form
+            viewingIssuesForm.Show();
         }
 
         private void ClearForm()
