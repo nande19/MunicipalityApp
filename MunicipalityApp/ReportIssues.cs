@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MunicipalityApp
@@ -20,30 +14,30 @@ namespace MunicipalityApp
 
         private Start startForm;  // Reference to the Start form
 
-        public ReportIssues()
+        // Constructor that accepts the Start form reference
+        public ReportIssues(Start startForm)
         {
             InitializeComponent();
             this.startForm = startForm;  // Save the Start form reference
-
         }
 
-        // Populate categoryBox with predefined categories
-
-
-        //Back button to return to the main 
+        // Back button to return to the main form
         private void backBtn_Click(object sender, EventArgs e)
         {
-            this.Close(); // Close the current form and go back to the main menu
-
+            // Check if startForm is not null before attempting to show it
+            if (startForm != null)
+            {
+                startForm.Show();  // Show the Start form when the back button is clicked
+            }
+            this.Close();  // Close the ReportIssues form
         }
 
-        // Event handler for the Attach button to select media files
-        private void attachFilesBtn_Click(object sender, EventArgs e)
+        // Event handler for attaching files
+        private void attachBtn_Click(object sender, EventArgs e)
         {
-            // Open a file dialog to allow users to attach files (images/documents)
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Multiselect = true,  // Allow multiple file selections
+                Multiselect = true,
                 Filter = "Images and Documents|*.jpg;*.jpeg;*.png;*.pdf;*.docx"
             };
 
@@ -51,20 +45,20 @@ namespace MunicipalityApp
             {
                 foreach (string file in openFileDialog.FileNames)
                 {
-                    attachments.Add(file);  // Add selected file paths to the list of attachments
+                    attachments.Add(file);
                 }
 
                 MessageBox.Show("Files have been successfully selected.", "Files Attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        // Save button event handler
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            // Retrieve data from the form controls
             string location = locationTxt.Text;
             string category = categoryBox.SelectedItem?.ToString();
             string description = descriptionTxt.Text;
 
-            // Check if the required fields are filled
             if (string.IsNullOrEmpty(location) || string.IsNullOrEmpty(category) || string.IsNullOrEmpty(description))
             {
                 MessageBox.Show("Please fill in all required fields: Location, Category, and Description.",
@@ -72,48 +66,66 @@ namespace MunicipalityApp
                 return;
             }
 
-            // Simulate task progress for saving the report
-            progressBar.Value = 0;  // Reset progress bar to 0
-
-            // Increment progress - this is just an example, you can adjust based on your scenario
-            progressBar.Value += 30;  // Example progress increment for filling data
-
-            // Simulating file attachment progress
-            if (attachments.Count > 0)
+            // Check if all attachments exist
+            foreach (var attachment in attachments)
             {
-                progressBar.Value += 30;  // Example increment for attachments
+                if (!System.IO.File.Exists(attachment))
+                {
+                    MessageBox.Show($"File does not exist: {attachment}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;  // Exit the method if any file is not found
+                }
             }
 
-            // Final step: save to list and complete progress
+            // For debugging: Print out attachment paths
+            MessageBox.Show("Attachments:\n" + string.Join("\n", attachments), "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            progressBar.Value = 0;
+
+            progressBar.Value += 30;
+
+            if (attachments.Count > 0)
+            {
+                progressBar.Value += 30;
+            }
+
             IssueDetails newIssue = new IssueDetails(location, category, description, attachments);
             issueList.Add(newIssue);
 
-            progressBar.Value = 100;  // Set to maximum when done
+            progressBar.Value = 100;
 
-            // Show success message
             MessageBox.Show("Your issue has been successfully reported!",
                             "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Clear the form fields for a new report
             ClearForm();
 
-            // Open the ViewingIssues form to show the list of issues
             ViewingIssues viewingIssuesForm = new ViewingIssues(issueList);
-            viewingIssuesForm.FormClosed += (s, args) => this.Close();  // Close the ReportIssues form when ViewingIssues is closed
-            viewingIssuesForm.Show();  // Display the ViewingIssues form
 
+            this.Hide();
+
+            viewingIssuesForm.FormClosed += (s, args) => this.Close();
+
+            viewingIssuesForm.Show();
         }
+
 
         private void ClearForm()
         {
             locationTxt.Clear();
-            categoryBox.SelectedIndex = -1;  // Reset the combo box
+            categoryBox.SelectedIndex = -1;
             descriptionTxt.Clear();
-            attachments.Clear();  // Clear attached files list
+            attachments.Clear();
+        }
+    
+
+
+    private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
+        {
+
         }
 
-
+      
+        }
     }
 
-}
+
    

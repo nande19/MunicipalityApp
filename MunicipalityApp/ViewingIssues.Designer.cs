@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.viewingLbl = new System.Windows.Forms.Label();
             this.viewLstVw = new System.Windows.Forms.ListView();
             this.backBtn = new System.Windows.Forms.Button();
+            this.attachmentsImageList = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // viewingLbl
@@ -65,12 +67,18 @@
             this.backBtn.UseVisualStyleBackColor = false;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
+            // attachmentsImageList
+            // 
+            this.attachmentsImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.attachmentsImageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.attachmentsImageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // ViewingIssues
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(982, 653);
+            this.ClientSize = new System.Drawing.Size(1101, 653);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.viewLstVw);
             this.Controls.Add(this.viewingLbl);
@@ -85,5 +93,6 @@
         private System.Windows.Forms.Label viewingLbl;
         private System.Windows.Forms.ListView viewLstVw;
         private System.Windows.Forms.Button backBtn;
+        private System.Windows.Forms.ImageList attachmentsImageList;
     }
 }

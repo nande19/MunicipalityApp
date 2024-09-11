@@ -134,6 +134,7 @@
             this.attachBtn.TabIndex = 13;
             this.attachBtn.Text = "Select";
             this.attachBtn.UseVisualStyleBackColor = true;
+            this.attachBtn.Click += new System.EventHandler(this.attachBtn_Click);
             // 
             // backBtn
             // 
@@ -141,7 +142,7 @@
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backBtn.Location = new System.Drawing.Point(48, 27);
             this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(75, 56);
+            this.backBtn.Size = new System.Drawing.Size(75, 67);
             this.backBtn.TabIndex = 14;
             this.backBtn.Text = "Back to Main";
             this.backBtn.UseVisualStyleBackColor = false;

@@ -20,7 +20,7 @@ namespace MunicipalityApp
         private void reportIssuesBtn_Click(object sender, EventArgs e)
         {
             // Create an instance of ReportIssues form
-            ReportIssues reportForm = new ReportIssues();
+            ReportIssues reportForm = new ReportIssues(this);
 
             // Set the Start form to hide when the ReportIssues form is opened
             this.Hide();  // Hide the Start form
@@ -28,8 +28,6 @@ namespace MunicipalityApp
             // Show the ReportIssues form
             reportForm.ShowDialog();  // Show the ReportIssues form as a modal dialog
 
-            // When the ReportIssues form is closed, show the Start form again
-            this.Show();  // Optionally show the Start form again when ReportIssues is closed
         }
 
         private void eventsBtn_Click(object sender, EventArgs e)
