@@ -66,6 +66,19 @@ namespace MunicipalityApp
                 return;
             }
 
+            // Check if all attachments exist
+            foreach (var attachment in attachments)
+            {
+                if (!System.IO.File.Exists(attachment))
+                {
+                    MessageBox.Show($"File does not exist: {attachment}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;  // Exit the method if any file is not found
+                }
+            }
+
+            // For debugging: Print out attachment paths
+            MessageBox.Show("Attachments:\n" + string.Join("\n", attachments), "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             progressBar.Value = 0;
 
             progressBar.Value += 30;
@@ -94,6 +107,7 @@ namespace MunicipalityApp
             viewingIssuesForm.Show();
         }
 
+
         private void ClearForm()
         {
             locationTxt.Clear();
@@ -104,7 +118,7 @@ namespace MunicipalityApp
     
 
 
-private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
+    private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
         {
 
         }

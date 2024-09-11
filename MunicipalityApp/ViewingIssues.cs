@@ -15,57 +15,70 @@ namespace MunicipalityApp
             InitializeComponent();
             issueList = issues;  // Assign the issue list
 
-            // Display the first issue's image (for example purposes)
-            if (issueList != null && issueList.Count > 0)
+            // Initialize and configure the ImageList
+            attachmentsImageList = new ImageList
             {
-                IssueDetails firstIssue = issueList[0];  // Get the first issue (as an example)
-                if (firstIssue.Attachments.Count > 0)
-                {
-                    string imagePath = firstIssue.Attachments[0];  // Get the first attachment (assuming it's an image)
+                ImageSize = new Size(100, 100),  // Set the size of the images in the ImageList
+                ColorDepth = ColorDepth.Depth24Bit
+            };
 
-                    // Display the image in a PictureBox (ensure PictureBox is added to the form)
-                    pictureBox.Image = Image.FromFile(imagePath);
-                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                }
-            }
-            // Set up ListView with a single column
+            // Set up ListView with columns
             viewLstVw.View = View.Details;  // Set view to Details
             viewLstVw.Columns.Add("Issues", 800);  // Add a single column for displaying issues
             viewLstVw.Columns.Add("Attachments", 200);  // Add column for image attachments
+            viewLstVw.SmallImageList = attachmentsImageList;  // Assign the ImageList to the ListView
 
             PopulateIssuesGrid();  // Call the method to populate the grid
         }
 
         // Method to populate the ListView with issue details
         private void PopulateIssuesGrid()
+{
+    // Clear existing items and images
+    viewLstVw.Items.Clear();
+    attachmentsImageList.Images.Clear();
+
+    foreach (var issue in issueList)
+    {
+        string issueDetails = $"Location: {issue.Location}, " +
+                              $"Category: {issue.Category}, " +
+                              $"Description: {issue.Description}";
+
+        ListViewItem item = new ListViewItem(issueDetails);
+
+        // Add attachment details to ListView item
+        if (issue.Attachments.Count > 0)
         {
-            // Clear existing items (in case of refresh)
-            viewLstVw.Items.Clear();
+            string attachmentDetails = string.Join(", ", issue.Attachments);
+            item.SubItems.Add(attachmentDetails);
 
-            // Iterate over the issue list and add items to the ListView
-            foreach (var issue in issueList)
+            foreach (string attachment in issue.Attachments)
             {
-                // Combine the issue details into a single formatted string with commas and spaces
-                string issueDetails = $"Location: {issue.Location}, " +
-                                      $"Category: {issue.Category}, " +
-                                      $"Description: {issue.Description}, ";
-
-                // Create a new ListViewItem with the formatted string
-                ListViewItem item = new ListViewItem(issueDetails);
-
-                // If attachments exist, display them in a separate column
-                if (issue.Attachments.Count > 0)
+                try
                 {
-                    string attachmentDetails = string.Join(", ", issue.Attachments);  // Combine attachment file names
-                    item.SubItems.Add(attachmentDetails);  // Add as a sub-item for attachments
+                    // Load image and add to ImageList
+                    Image image = Image.FromFile(attachment);
+                    string imageKey = System.IO.Path.GetFileName(attachment);
+
+                    // Debugging: Verify image and key
+                    MessageBox.Show($"Adding image: {attachment} with key: {imageKey}", "Attachment", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    attachmentsImageList.Images.Add(imageKey, image);
+
+                    // Set image index in ListViewItem
+                    item.ImageKey = imageKey;
                 }
-
-
-                // Add the ListViewItem to the ListView
-                viewLstVw.Items.Add(item);
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading image {attachment}: {ex.Message}",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
+        viewLstVw.Items.Add(item);
+    }
+}
 
         private void backBtn_Click(object sender, EventArgs e)
         {
@@ -77,6 +90,5 @@ namespace MunicipalityApp
 
             this.Close(); // Close the current form
         }
-
     }
 }
