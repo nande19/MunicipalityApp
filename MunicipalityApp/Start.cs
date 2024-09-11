@@ -39,5 +39,10 @@ namespace MunicipalityApp
         {
 
         }
+
+        private void Start_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

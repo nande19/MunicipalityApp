@@ -83,7 +83,7 @@
             this.Controls.Add(this.viewLstVw);
             this.Controls.Add(this.viewingLbl);
             this.Name = "ViewingIssues";
-            this.Text = "ViewingIssues";
+            this.Text = "Viewing Issues";
             this.ResumeLayout(false);
             this.PerformLayout();
 
