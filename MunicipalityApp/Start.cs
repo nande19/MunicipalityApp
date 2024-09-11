@@ -20,7 +20,7 @@ namespace MunicipalityApp
         private void reportIssuesBtn_Click(object sender, EventArgs e)
         {
             // Create an instance of ReportIssues form
-            ReportIssues reportForm = new ReportIssues();
+            ReportIssues reportForm = new ReportIssues(this);
 
             // Set the Start form to hide when the ReportIssues form is opened
             this.Hide();  // Hide the Start form
