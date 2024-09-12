@@ -14,14 +14,23 @@ namespace MunicipalityApp
 
         private Start startForm;  // Reference to the Start form
 
-        // Constructor that accepts the Start form reference
+
+        //--------------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Constructor that accepts the Start form reference
+        /// </summary>
+
         public ReportIssues(Start startForm)
         {
             InitializeComponent();
             this.startForm = startForm;  // Save the Start form reference
         }
+//--------------------------------------------------------------------------------------------------------//
 
-        // Back button to return to the main form
+        /// <summary>
+        /// Back button to return to the main form
+        /// </summary>
+
         private void backBtn_Click(object sender, EventArgs e)
         {
             // Check if startForm is not null before attempting to show it
@@ -31,8 +40,11 @@ namespace MunicipalityApp
             }
             this.Close();  // Close the ReportIssues form
         }
+        //--------------------------------------------------------------------------------------------------------//
 
-        // Event handler for attaching files
+        /// <summary>
+        ///   Event handler for attaching files
+        /// </summary>
         private void attachBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -51,8 +63,12 @@ namespace MunicipalityApp
                 MessageBox.Show("Files have been successfully selected.", "Files Attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+//--------------------------------------------------------------------------------------------------------//
 
-        // Save button event handler
+        /// <summary>
+        /// Save button event handler
+        /// </summary>
+       
         private void saveBtn_Click(object sender, EventArgs e)
         {
             string location = locationTxt.Text;
@@ -107,7 +123,11 @@ namespace MunicipalityApp
             viewingIssuesForm.Show();
         }
 
+        //--------------------------------------------------------------------------------------------------------//
 
+        /// <summary>
+        /// This method clears all the input fields on the form.
+        /// </summary>
         private void ClearForm()
         {
             locationTxt.Clear();
@@ -115,10 +135,14 @@ namespace MunicipalityApp
             descriptionTxt.Clear();
             attachments.Clear();
         }
-    
 
+        //--------------------------------------------------------------------------------------------------------//
 
-    private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
+        /// <summary>
+        /// Event handler for when the BindingNavigator is refreshed.
+        /// </summary>
+
+        private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
         {
 
         }
@@ -126,6 +150,4 @@ namespace MunicipalityApp
       
         }
     }
-
-
-   
+        //---------------------------------------- END OF FILE -------------------------------------------------------//

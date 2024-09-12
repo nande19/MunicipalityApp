@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace MunicipalityApp
 {
+    //--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// variables are here, this is where data is stored
+        /// </summary>
     public class IssueDetails
     {
         public string Location { get; set; }
@@ -28,4 +33,5 @@ namespace MunicipalityApp
         }
     }
 }
+        //---------------------------------------- END OF FILE -------------------------------------------------------//
 

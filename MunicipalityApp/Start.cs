@@ -16,7 +16,11 @@ namespace MunicipalityApp
         {
             InitializeComponent();
         }
+//--------------------------------------------------------------------------------------------------------//
 
+        /// <summary>
+        /// report issue button functionality
+        /// </summary>
         private void reportIssuesBtn_Click(object sender, EventArgs e)
         {
             // Create an instance of ReportIssues form
@@ -29,20 +33,33 @@ namespace MunicipalityApp
             reportForm.ShowDialog();  // Show the ReportIssues form as a modal dialog
 
         }
+//--------------------------------------------------------------------------------------------------------//
 
+        /// <summary>
+        /// to be added
+        /// </summary>
         private void eventsBtn_Click(object sender, EventArgs e)
         {
 
         }
+//--------------------------------------------------------------------------------------------------------//
 
+        /// <summary>
+        /// to be added
+        /// </summary>
         private void serviceRequestBtn_Click(object sender, EventArgs e)
         {
 
         }
+//--------------------------------------------------------------------------------------------------------//
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void Start_Load(object sender, EventArgs e)
         {
 
         }
     }
 }
+        //---------------------------------------- END OF FILE -------------------------------------------------------//

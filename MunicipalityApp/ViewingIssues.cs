@@ -8,8 +8,13 @@ namespace MunicipalityApp
 {
     public partial class ViewingIssues : Form
     {
-        private List<IssueDetails> issueList;
+        private List<IssueDetails> issueList; // List to store the details of reported issues
 
+        //--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// Constructor that accepts a list of issues and initializes the form
+        /// </summary>
         public ViewingIssues(List<IssueDetails> issues)
         {
             InitializeComponent();
@@ -30,8 +35,12 @@ namespace MunicipalityApp
 
             PopulateIssuesGrid();  // Call the method to populate the grid
         }
+//--------------------------------------------------------------------------------------------------------//
 
-        // Method to populate the ListView with issue details
+        /// <summary>
+        /// Method to populate the ListView with issue details
+        /// </summary>
+        
         private void PopulateIssuesGrid()
 {
     // Clear existing items and images
@@ -79,7 +88,11 @@ namespace MunicipalityApp
         viewLstVw.Items.Add(item);
     }
 }
+        //--------------------------------------------------------------------------------------------------------//
 
+        /// <summary>
+        /// Event handler for the back button click event
+        /// </summary>
         private void backBtn_Click(object sender, EventArgs e)
         {
             // Show the Start form and close the current form
@@ -92,3 +105,4 @@ namespace MunicipalityApp
         }
     }
 }
+//---------------------------------------- END OF FILE -------------------------------------------------------//
