@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewingIssues));
             this.viewingLbl = new System.Windows.Forms.Label();
             this.viewLstVw = new System.Windows.Forms.ListView();
             this.backBtn = new System.Windows.Forms.Button();
@@ -78,7 +79,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1101, 653);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(1053, 653);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.viewLstVw);
             this.Controls.Add(this.viewingLbl);
