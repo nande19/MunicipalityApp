@@ -40,9 +40,17 @@ namespace MunicipalityApp
         /// </summary>
         private void eventsBtn_Click(object sender, EventArgs e)
         {
+            // Create an instance of ReportIssues form
+            Events Announcements = new Events();
+
+            // Set the Start form to hide when the ReportIssues form is opened
+            this.Hide();  // Hide the Start form
+
+            // Show the ReportIssues form
+            Announcements.ShowDialog(); // Show the ReportIssues form as a modal dialog
 
         }
-//--------------------------------------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// to be added
