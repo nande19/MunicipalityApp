@@ -94,7 +94,8 @@
             this.Controls.Add(this.eventsBtn);
             this.Controls.Add(this.reportIssuesBtn);
             this.Name = "Start";
-            this.Text = "Form1";
+            this.Text = "Start";
+            this.Load += new System.EventHandler(this.Start_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

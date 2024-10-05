@@ -188,7 +188,7 @@
             this.Controls.Add(this.descriptionLbl);
             this.Controls.Add(this.locationLbl);
             this.Name = "ReportIssues";
-            this.Text = "ReportIssues";
+            this.Text = "Report Issues";
             this.ResumeLayout(false);
             this.PerformLayout();
 

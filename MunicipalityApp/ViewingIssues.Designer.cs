@@ -62,7 +62,7 @@
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backBtn.Location = new System.Drawing.Point(54, 30);
             this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(75, 56);
+            this.backBtn.Size = new System.Drawing.Size(80, 65);
             this.backBtn.TabIndex = 15;
             this.backBtn.Text = "Back to Main";
             this.backBtn.UseVisualStyleBackColor = false;
@@ -85,7 +85,7 @@
             this.Controls.Add(this.viewLstVw);
             this.Controls.Add(this.viewingLbl);
             this.Name = "ViewingIssues";
-            this.Text = "ViewingIssues";
+            this.Text = "Viewing Issues";
             this.ResumeLayout(false);
             this.PerformLayout();
 
