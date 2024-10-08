@@ -59,33 +59,40 @@ namespace MunicipalityApp
         /// </summary>
         private void attachBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openDialog = new OpenFileDialog
+            try
             {
-                Filter = "Image files | *.bmp;*.jpg;*.png",
-                FilterIndex = 1,
-                Multiselect = false // Allow only one file selection
-            };
+                OpenFileDialog openDialog = new OpenFileDialog
+                {
+                    Filter = "Image files | *.bmp;*.jpg;*.png",
+                    FilterIndex = 1,
+                    Multiselect = false // Allow only one file selection
+                };
 
-            if (openDialog.ShowDialog() == DialogResult.OK) // Correct comparison
-            {
-                // Add the file path to the attachments list
-                attachments.Add(openDialog.FileName);
+                if (openDialog.ShowDialog() == DialogResult.OK) // Correct comparison
+                {
+                    // Add the file path to the attachments list
+                    attachments.Add(openDialog.FileName);
 
-                // Display the attached image in a PictureBox
-                // Ensure you have a PictureBox control named 'imagePicture'
-                imagePicture.Image = Image.FromFile(openDialog.FileName); // Use Image.FromFile for WinForms
+                    // Display the attached image in a PictureBox
+                    // Ensure you have a PictureBox control named 'imagePicture'
+                    imagePicture.Image = ResizeImage(Image.FromFile(openDialog.FileName), new Size(280, 95)); // Resize and set the image
 
-                MessageBox.Show("File has been successfully selected.", "File Attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("File has been successfully selected.", "File Attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateProgressBar(); // Update progress bar after attachment
+                }
             }
-
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while attaching the file: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-//--------------------------------------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// Save button event handler
         /// </summary>
-       
+
         private void saveBtn_Click(object sender, EventArgs e)
         {
             try
@@ -148,35 +155,57 @@ namespace MunicipalityApp
             }
         }
 
-    
 
-    //--------------------------------------------------------------------------------------------------------//
 
-    /// <summary>
-    /// This method clears all the input fields on the form.
-    /// </summary>
-    private void ClearForm()
+        //--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// This method clears all the input fields on the form.
+        /// </summary>
+        private void ClearForm()
         {
             locationTxt.Clear();
             categoryBox.SelectedIndex = -1;
             descriptionTxt.Clear();
             attachments.Clear();
+            imagePicture.Image = null; // Clear the PictureBox
+
         }
 
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// Event handler for when the BindingNavigator is refreshed.
+        /// Update the progress bar based on the input fields and attachments.
         /// </summary>
-
-        private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
+        private void UpdateProgressBar()
         {
+            progressBar.Value = 0; // Reset progress bar
 
+            // Increment the progress bar based on filled fields
+            if (!string.IsNullOrEmpty(locationTxt.Text)) progressBar.Value += 33; // 33% for location
+            if (categoryBox.SelectedIndex >= 0) progressBar.Value += 33; // 33% for category
+            if (!string.IsNullOrEmpty(descriptionTxt.Text)) progressBar.Value += 33; // 33% for description
+            if (attachments.Count > 0) progressBar.Value += 1; // 1% for attachment
         }
 
-      
+        //--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// Resizes the given image to fit within the specified size.
+        /// </summary>
+        
+        private Image ResizeImage(Image image, Size size)
+        {
+            Bitmap resizedImage = new Bitmap(size.Width, size.Height);
+            using (Graphics g = Graphics.FromImage(resizedImage))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(image, 0, 0, size.Width, size.Height);
+            }
+            return resizedImage;
         }
-
-
     }
+}
+
+
         //---------------------------------------- END OF FILE -------------------------------------------------------//

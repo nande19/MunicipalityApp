@@ -140,7 +140,7 @@
             // 
             this.attachBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.attachBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.attachBtn.Location = new System.Drawing.Point(343, 389);
+            this.attachBtn.Location = new System.Drawing.Point(76, 433);
             this.attachBtn.Name = "attachBtn";
             this.attachBtn.Size = new System.Drawing.Size(131, 31);
             this.attachBtn.TabIndex = 13;
@@ -164,7 +164,7 @@
             // progressBar
             // 
             this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(314, 494);
+            this.progressBar.Location = new System.Drawing.Point(231, 520);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(316, 23);
             this.progressBar.TabIndex = 15;
@@ -174,7 +174,7 @@
             this.saveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saveBtn.BackColor = System.Drawing.Color.LimeGreen;
             this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(405, 560);
+            this.saveBtn.Location = new System.Drawing.Point(321, 563);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(132, 43);
             this.saveBtn.TabIndex = 16;
@@ -185,9 +185,9 @@
             // imagePicture
             // 
             this.imagePicture.BackColor = System.Drawing.Color.White;
-            this.imagePicture.Location = new System.Drawing.Point(490, 379);
+            this.imagePicture.Location = new System.Drawing.Point(343, 387);
             this.imagePicture.Name = "imagePicture";
-            this.imagePicture.Size = new System.Drawing.Size(280, 95);
+            this.imagePicture.Size = new System.Drawing.Size(310, 116);
             this.imagePicture.TabIndex = 17;
             this.imagePicture.TabStop = false;
             // 
