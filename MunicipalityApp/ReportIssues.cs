@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MunicipalityApp
@@ -36,12 +37,20 @@ namespace MunicipalityApp
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            // Check if startForm is not null before attempting to show it
-            if (startForm != null)
+            try
             {
-                startForm.Show();  // Show the Start form when the back button is clicked
+                // Check if startForm is not null before attempting to show it
+                if (startForm != null)
+                {
+                    startForm.Show();  // Show the Start form when the back button is clicked
+                }
+                this.Close();  // Close the form
             }
-            this.Close();  // Close the form
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while navigating back: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         //--------------------------------------------------------------------------------------------------------//
 
@@ -50,21 +59,26 @@ namespace MunicipalityApp
         /// </summary>
         private void attachBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            OpenFileDialog openDialog = new OpenFileDialog
             {
-                Multiselect = true,
-                Filter = "Images and Documents|*.jpg;*.jpeg;*.png;*.pdf;*.docx"
+                Filter = "Image files | *.bmp;*.jpg;*.png",
+                FilterIndex = 1,
+                Multiselect = false // Allow only one file selection
             };
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openDialog.ShowDialog() == DialogResult.OK) // Correct comparison
             {
-                foreach (string file in openFileDialog.FileNames)
-                {
-                    attachments.Add(file);
-                }
+                // Add the file path to the attachments list
+                attachments.Add(openDialog.FileName);
 
-                MessageBox.Show("Files have been successfully selected.", "Files Attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Display the attached image in a PictureBox
+                // Ensure you have a PictureBox control named 'imagePicture'
+                imagePicture.Image = Image.FromFile(openDialog.FileName); // Use Image.FromFile for WinForms
+
+                MessageBox.Show("File has been successfully selected.", "File Attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            
         }
 //--------------------------------------------------------------------------------------------------------//
 
@@ -74,64 +88,74 @@ namespace MunicipalityApp
        
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            string location = locationTxt.Text;
-            string category = categoryBox.SelectedItem?.ToString();
-            string description = descriptionTxt.Text;
-
-            if (string.IsNullOrEmpty(location) || string.IsNullOrEmpty(category) || string.IsNullOrEmpty(description))
+            try
             {
-                MessageBox.Show("Please fill in all required fields: Location, Category, and Description.",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                string location = locationTxt.Text;
+                string category = categoryBox.SelectedItem?.ToString();
+                string description = descriptionTxt.Text;
 
-            // Check if all attachments exist
-            foreach (var attachment in attachments)
-            {
-                if (!System.IO.File.Exists(attachment))
+                if (string.IsNullOrEmpty(location) || string.IsNullOrEmpty(category) || string.IsNullOrEmpty(description))
                 {
-                    MessageBox.Show($"File does not exist: {attachment}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;  // Exit the method if any file is not found
+                    MessageBox.Show("Please fill in all required fields: Location, Category, and Description.",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-            }
 
-            // For debugging: Print out attachment paths
-            MessageBox.Show("Attachments:\n" + string.Join("\n", attachments), "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Check if all attachments exist
+                foreach (var attachment in attachments)
+                {
+                    if (!System.IO.File.Exists(attachment))
+                    {
+                        MessageBox.Show($"File does not exist: {attachment}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;  // Exit the method if any file is not found
+                    }
+                }
 
-            progressBar.Value = 0;
+                // For debugging: Print out attachment paths
+                MessageBox.Show("Attachments:\n" + string.Join("\n", attachments), "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            progressBar.Value += 30;
+                progressBar.Value = 0;
 
-            if (attachments.Count > 0)
-            {
                 progressBar.Value += 30;
+
+                if (attachments.Count > 0)
+                {
+                    progressBar.Value += 30;
+                }
+
+                IssueDetails newIssue = new IssueDetails(location, category, description, attachments);
+                issueList.Add(newIssue);
+
+                progressBar.Value = 100;
+
+                MessageBox.Show("Your issue has been successfully reported!",
+                                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ClearForm();
+
+                ViewingIssues viewingIssuesForm = new ViewingIssues(issueList);
+
+                this.Hide();
+
+                viewingIssuesForm.FormClosed += (s, args) => this.Close();
+
+                viewingIssuesForm.Show();
             }
-
-            IssueDetails newIssue = new IssueDetails(location, category, description, attachments);
-            issueList.Add(newIssue);
-
-            progressBar.Value = 100;
-
-            MessageBox.Show("Your issue has been successfully reported!",
-                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            ClearForm();
-
-            ViewingIssues viewingIssuesForm = new ViewingIssues(issueList);
-
-            this.Hide();
-
-            viewingIssuesForm.FormClosed += (s, args) => this.Close();
-
-            viewingIssuesForm.Show();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while saving the issue: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        //--------------------------------------------------------------------------------------------------------//
+    
 
-        /// <summary>
-        /// This method clears all the input fields on the form.
-        /// </summary>
-        private void ClearForm()
+    //--------------------------------------------------------------------------------------------------------//
+
+    /// <summary>
+    /// This method clears all the input fields on the form.
+    /// </summary>
+    private void ClearForm()
         {
             locationTxt.Clear();
             categoryBox.SelectedIndex = -1;

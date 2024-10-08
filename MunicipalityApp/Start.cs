@@ -15,15 +15,9 @@ namespace MunicipalityApp
         public Start()
         {
             InitializeComponent();
-            this.FormClosing += Start_FormClosing;  // Subscribe to the FormClosing event
         }
 
-        private void Start_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // Terminate the entire application when the Start form is closed
-            Application.Exit();
-        }
-
+      
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
@@ -70,15 +64,11 @@ namespace MunicipalityApp
 //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// 
+        /// Start Window
         /// </summary>
         private void Start_Load(object sender, EventArgs e)
         {
-            Rectangle working = Screen.PrimaryScreen.WorkingArea;
-
-            this.Size = new Size(Convert.ToInt32(0.5 * working.Width), Convert.ToInt32(0.5 * working.Height));
-
-            this.Location = new Point(10, 10);
+            
         }
     }
 }

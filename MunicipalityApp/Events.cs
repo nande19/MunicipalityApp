@@ -28,12 +28,20 @@ namespace MunicipalityApp
         /// </summary>
         private void backBtn_Click(object sender, EventArgs e)
         {
-            // Check if startForm is not null before attempting to show it
-            if (startForm != null)
+            try
             {
-                startForm.Show();  // Show the Start form when the back button is clicked
+                // Check if startForm is not null before attempting to show it
+                if (startForm != null)
+                {
+                    startForm.Show();  // Show the Start form when the back button is clicked
+                }
+                this.Close();  // Close the form
             }
-            this.Close();  // Close the form
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while navigating back: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

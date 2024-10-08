@@ -41,6 +41,8 @@
             this.backBtn = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.saveBtn = new System.Windows.Forms.Button();
+            this.imagePicture = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.imagePicture)).BeginInit();
             this.SuspendLayout();
             // 
             // locationLbl
@@ -180,6 +182,15 @@
             this.saveBtn.UseVisualStyleBackColor = false;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
+            // imagePicture
+            // 
+            this.imagePicture.BackColor = System.Drawing.Color.White;
+            this.imagePicture.Location = new System.Drawing.Point(490, 379);
+            this.imagePicture.Name = "imagePicture";
+            this.imagePicture.Size = new System.Drawing.Size(280, 95);
+            this.imagePicture.TabIndex = 17;
+            this.imagePicture.TabStop = false;
+            // 
             // ReportIssues
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -187,6 +198,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(782, 653);
+            this.Controls.Add(this.imagePicture);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.backBtn);
@@ -201,6 +213,7 @@
             this.Controls.Add(this.locationLbl);
             this.Name = "ReportIssues";
             this.Text = "Report Issues";
+            ((System.ComponentModel.ISupportInitialize)(this.imagePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +232,6 @@
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.PictureBox imagePicture;
     }
 }
