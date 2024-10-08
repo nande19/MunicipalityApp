@@ -39,9 +39,9 @@
             this.categoryBox = new System.Windows.Forms.ComboBox();
             this.attachBtn = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.saveBtn = new System.Windows.Forms.Button();
             this.imagePicture = new System.Windows.Forms.PictureBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.imagePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,6 +97,7 @@
             this.locationTxt.Name = "locationTxt";
             this.locationTxt.Size = new System.Drawing.Size(230, 22);
             this.locationTxt.TabIndex = 9;
+            this.locationTxt.TextChanged += new System.EventHandler(this.locationTxt_TextChanged);
             // 
             // categoryLbl
             // 
@@ -117,6 +118,7 @@
             this.descriptionTxt.Size = new System.Drawing.Size(310, 96);
             this.descriptionTxt.TabIndex = 12;
             this.descriptionTxt.Text = "";
+            this.descriptionTxt.TextChanged += new System.EventHandler(this.descriptionTxt_TextChanged);
             // 
             // categoryBox
             // 
@@ -135,6 +137,7 @@
             this.categoryBox.Name = "categoryBox";
             this.categoryBox.Size = new System.Drawing.Size(230, 24);
             this.categoryBox.TabIndex = 10;
+            this.categoryBox.SelectedIndexChanged += new System.EventHandler(this.categoryBox_SelectedIndexChanged);
             // 
             // attachBtn
             // 
@@ -161,14 +164,6 @@
             this.backBtn.UseVisualStyleBackColor = false;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
-            // progressBar
-            // 
-            this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar.Location = new System.Drawing.Point(231, 520);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(316, 23);
-            this.progressBar.TabIndex = 15;
-            // 
             // saveBtn
             // 
             this.saveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -190,6 +185,16 @@
             this.imagePicture.Size = new System.Drawing.Size(310, 116);
             this.imagePicture.TabIndex = 17;
             this.imagePicture.TabStop = false;
+            this.imagePicture.Click += new System.EventHandler(this.imagePicture_Click);
+            // 
+            // progressBar
+            // 
+            this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.progressBar.Location = new System.Drawing.Point(231, 520);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(316, 23);
+            this.progressBar.TabIndex = 15;
+            this.progressBar.Click += new System.EventHandler(this.progressBar_Click);
             // 
             // ReportIssues
             // 
@@ -230,8 +235,8 @@
         private System.Windows.Forms.ComboBox categoryBox;
         private System.Windows.Forms.Button attachBtn;
         private System.Windows.Forms.Button backBtn;
-        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.PictureBox imagePicture;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }

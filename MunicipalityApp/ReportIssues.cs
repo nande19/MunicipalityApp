@@ -118,9 +118,7 @@ namespace MunicipalityApp
                     }
                 }
 
-                // For debugging: Print out attachment paths
-                MessageBox.Show("Attachments:\n" + string.Join("\n", attachments), "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+              
                 progressBar.Value = 0;
 
                 progressBar.Value += 30;
@@ -182,18 +180,34 @@ namespace MunicipalityApp
             progressBar.Value = 0; // Reset progress bar
 
             // Increment the progress bar based on filled fields
-            if (!string.IsNullOrEmpty(locationTxt.Text)) progressBar.Value += 33; // 33% for location
-            if (categoryBox.SelectedIndex >= 0) progressBar.Value += 33; // 33% for category
-            if (!string.IsNullOrEmpty(descriptionTxt.Text)) progressBar.Value += 33; // 33% for description
-            if (attachments.Count > 0) progressBar.Value += 1; // 1% for attachment
-        }
+            int filledFieldsCount = 0;
 
+            if (!string.IsNullOrEmpty(locationTxt.Text))
+            {
+                filledFieldsCount++;
+            }
+            if (categoryBox.SelectedIndex >= 0)
+            {
+                filledFieldsCount++;
+            }
+            if (!string.IsNullOrEmpty(descriptionTxt.Text))
+            {
+                filledFieldsCount++;
+            }
+            if (attachments.Count > 0)
+            {
+                filledFieldsCount++;
+            }
+
+            // Calculate the progress percentage
+            progressBar.Value = (filledFieldsCount * 100) / 4; // Divide by 4 for four potential fields
+        }
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// Resizes the given image to fit within the specified size.
         /// </summary>
-        
+
         private Image ResizeImage(Image image, Size size)
         {
             Bitmap resizedImage = new Bitmap(size.Width, size.Height);
@@ -203,6 +217,39 @@ namespace MunicipalityApp
                 g.DrawImage(image, 0, 0, size.Width, size.Height);
             }
             return resizedImage;
+        }
+//--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// progress bar
+        /// </summary>
+
+        private void locationTxt_TextChanged(object sender, EventArgs e)
+        {
+            UpdateProgressBar(); // Update the progress bar when the location text changes
+
+        }
+
+        private void categoryBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateProgressBar(); // Update the progress bar when the category selection changes
+
+        }
+
+        private void descriptionTxt_TextChanged(object sender, EventArgs e)
+        {
+            UpdateProgressBar(); // Update the progress bar when the description text changes
+
+        }
+
+        private void imagePicture_Click(object sender, EventArgs e)
+        {
+            UpdateProgressBar(); // Update the progress bar when the description text changes
+        }
+
+        private void progressBar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
