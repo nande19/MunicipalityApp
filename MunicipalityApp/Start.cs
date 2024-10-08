@@ -66,7 +66,11 @@ namespace MunicipalityApp
         /// </summary>
         private void Start_Load(object sender, EventArgs e)
         {
+            Rectangle working = Screen.PrimaryScreen.WorkingArea;
 
+            this.Size = new Size(Convert.ToInt32(0.5 * working.Width), Convert.ToInt32(0.5 * working.Height));
+
+            this.Location = new Point(10, 10);
         }
     }
 }

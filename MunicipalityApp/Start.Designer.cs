@@ -37,6 +37,7 @@
             // 
             // reportIssuesBtn
             // 
+            this.reportIssuesBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.reportIssuesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.reportIssuesBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportIssuesBtn.Location = new System.Drawing.Point(345, 199);
@@ -49,6 +50,7 @@
             // 
             // eventsBtn
             // 
+            this.eventsBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.eventsBtn.BackColor = System.Drawing.Color.Olive;
             this.eventsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eventsBtn.Location = new System.Drawing.Point(345, 125);
@@ -61,6 +63,7 @@
             // 
             // serviceRequestBtn
             // 
+            this.serviceRequestBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.serviceRequestBtn.BackColor = System.Drawing.Color.Teal;
             this.serviceRequestBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serviceRequestBtn.Location = new System.Drawing.Point(345, 278);
@@ -73,6 +76,7 @@
             // 
             // municipalityLbl
             // 
+            this.municipalityLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.municipalityLbl.AutoSize = true;
             this.municipalityLbl.Font = new System.Drawing.Font("Modern No. 20", 16.2F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
