@@ -38,6 +38,7 @@
             // 
             // viewingLbl
             // 
+            this.viewingLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.viewingLbl.AutoSize = true;
             this.viewingLbl.Font = new System.Drawing.Font("Modern No. 20", 16.2F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))));
@@ -49,6 +50,7 @@
             // 
             // viewLstVw
             // 
+            this.viewLstVw.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.viewLstVw.HideSelection = false;
             this.viewLstVw.Location = new System.Drawing.Point(100, 150);
             this.viewLstVw.Name = "viewLstVw";
@@ -58,6 +60,7 @@
             // 
             // backBtn
             // 
+            this.backBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.backBtn.BackColor = System.Drawing.Color.Crimson;
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backBtn.Location = new System.Drawing.Point(54, 30);

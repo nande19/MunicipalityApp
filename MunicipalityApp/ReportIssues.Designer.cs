@@ -45,6 +45,7 @@
             // 
             // locationLbl
             // 
+            this.locationLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.locationLbl.AutoSize = true;
             this.locationLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.locationLbl.Location = new System.Drawing.Point(72, 124);
@@ -55,6 +56,7 @@
             // 
             // descriptionLbl
             // 
+            this.descriptionLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.descriptionLbl.AutoSize = true;
             this.descriptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionLbl.Location = new System.Drawing.Point(72, 263);
@@ -65,6 +67,7 @@
             // 
             // photoAttachLbl
             // 
+            this.photoAttachLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.photoAttachLbl.AutoSize = true;
             this.photoAttachLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.photoAttachLbl.Location = new System.Drawing.Point(72, 387);
@@ -75,6 +78,7 @@
             // 
             // municipalityLbl
             // 
+            this.municipalityLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.municipalityLbl.AutoSize = true;
             this.municipalityLbl.Font = new System.Drawing.Font("Modern No. 20", 16.2F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,6 +90,7 @@
             // 
             // locationTxt
             // 
+            this.locationTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.locationTxt.Location = new System.Drawing.Point(343, 124);
             this.locationTxt.Name = "locationTxt";
             this.locationTxt.Size = new System.Drawing.Size(230, 22);
@@ -93,6 +98,7 @@
             // 
             // categoryLbl
             // 
+            this.categoryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.categoryLbl.AutoSize = true;
             this.categoryLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoryLbl.Location = new System.Drawing.Point(72, 192);
@@ -103,14 +109,16 @@
             // 
             // descriptionTxt
             // 
+            this.descriptionTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.descriptionTxt.Location = new System.Drawing.Point(343, 255);
             this.descriptionTxt.Name = "descriptionTxt";
-            this.descriptionTxt.Size = new System.Drawing.Size(230, 96);
+            this.descriptionTxt.Size = new System.Drawing.Size(310, 96);
             this.descriptionTxt.TabIndex = 12;
             this.descriptionTxt.Text = "";
             // 
             // categoryBox
             // 
+            this.categoryBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.categoryBox.FormattingEnabled = true;
             this.categoryBox.Items.AddRange(new object[] {
             "Sanitation",
@@ -128,6 +136,7 @@
             // 
             // attachBtn
             // 
+            this.attachBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.attachBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.attachBtn.Location = new System.Drawing.Point(343, 389);
             this.attachBtn.Name = "attachBtn";
@@ -139,6 +148,7 @@
             // 
             // backBtn
             // 
+            this.backBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.backBtn.BackColor = System.Drawing.Color.Crimson;
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backBtn.Location = new System.Drawing.Point(48, 27);
@@ -151,6 +161,7 @@
             // 
             // progressBar
             // 
+            this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.progressBar.Location = new System.Drawing.Point(314, 494);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(316, 23);
@@ -158,6 +169,7 @@
             // 
             // saveBtn
             // 
+            this.saveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saveBtn.BackColor = System.Drawing.Color.LimeGreen;
             this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveBtn.Location = new System.Drawing.Point(405, 560);

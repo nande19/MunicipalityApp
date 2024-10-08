@@ -35,12 +35,14 @@ namespace MunicipalityApp
 
             PopulateIssuesGrid();  // Call the method to populate the grid
         }
-//--------------------------------------------------------------------------------------------------------//
+
+       
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// Method to populate the ListView with issue details
         /// </summary>
-        
+
         private void PopulateIssuesGrid()
 {
     // Clear existing items and images
@@ -101,7 +103,7 @@ namespace MunicipalityApp
                 Application.OpenForms.OfType<Start>().First().Show();
             }
 
-            this.Close(); // Close the current form
+            this.Close(); // Close the form
         }
     }
 }

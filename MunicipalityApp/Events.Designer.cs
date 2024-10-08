@@ -42,6 +42,7 @@
             // 
             // municipalityLbl
             // 
+            this.municipalityLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.municipalityLbl.AutoSize = true;
             this.municipalityLbl.Font = new System.Drawing.Font("Modern No. 20", 16.2F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -53,6 +54,7 @@
             // 
             // backBtn
             // 
+            this.backBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.backBtn.BackColor = System.Drawing.Color.Crimson;
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backBtn.Location = new System.Drawing.Point(36, 13);
@@ -65,6 +67,7 @@
             // 
             // listView1
             // 
+            this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(140, 215);
             this.listView1.Name = "listView1";
@@ -74,6 +77,7 @@
             // 
             // searchbyDatelbl
             // 
+            this.searchbyDatelbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.searchbyDatelbl.AutoSize = true;
             this.searchbyDatelbl.Location = new System.Drawing.Point(477, 93);
             this.searchbyDatelbl.Name = "searchbyDatelbl";
@@ -83,6 +87,7 @@
             // 
             // searchbyCategorylbl
             // 
+            this.searchbyCategorylbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.searchbyCategorylbl.AutoSize = true;
             this.searchbyCategorylbl.Location = new System.Drawing.Point(178, 93);
             this.searchbyCategorylbl.Name = "searchbyCategorylbl";
@@ -92,6 +97,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Market ",
@@ -111,17 +117,19 @@
             // 
             // searchBtn
             // 
+            this.searchBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.searchBtn.BackColor = System.Drawing.Color.LimeGreen;
             this.searchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBtn.Location = new System.Drawing.Point(339, 156);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(132, 25);
+            this.searchBtn.Size = new System.Drawing.Size(132, 35);
             this.searchBtn.TabIndex = 22;
             this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = false;
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dateTimePicker1.Location = new System.Drawing.Point(593, 92);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(225, 22);
@@ -129,17 +137,19 @@
             // 
             // clearBtn
             // 
+            this.clearBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.clearBtn.BackColor = System.Drawing.Color.LimeGreen;
             this.clearBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearBtn.Location = new System.Drawing.Point(524, 156);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(132, 25);
+            this.clearBtn.Size = new System.Drawing.Size(132, 35);
             this.clearBtn.TabIndex = 24;
             this.clearBtn.Text = "Clear";
             this.clearBtn.UseVisualStyleBackColor = false;
             // 
             // recommendBtn
             // 
+            this.recommendBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.recommendBtn.BackColor = System.Drawing.Color.LimeGreen;
             this.recommendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recommendBtn.Location = new System.Drawing.Point(625, 618);

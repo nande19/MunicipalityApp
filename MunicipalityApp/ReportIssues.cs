@@ -24,8 +24,11 @@ namespace MunicipalityApp
         {
             InitializeComponent();
             this.startForm = startForm;  // Save the Start form reference
+
         }
-//--------------------------------------------------------------------------------------------------------//
+
+
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// Back button to return to the main form
@@ -38,7 +41,7 @@ namespace MunicipalityApp
             {
                 startForm.Show();  // Show the Start form when the back button is clicked
             }
-            this.Close();  // Close the ReportIssues form
+            this.Close();  // Close the form
         }
         //--------------------------------------------------------------------------------------------------------//
 
@@ -149,5 +152,7 @@ namespace MunicipalityApp
 
       
         }
+
+
     }
         //---------------------------------------- END OF FILE -------------------------------------------------------//

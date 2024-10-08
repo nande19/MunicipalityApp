@@ -15,8 +15,16 @@ namespace MunicipalityApp
         public Start()
         {
             InitializeComponent();
+            this.FormClosing += Start_FormClosing;  // Subscribe to the FormClosing event
         }
-//--------------------------------------------------------------------------------------------------------//
+
+        private void Start_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Terminate the entire application when the Start form is closed
+            Application.Exit();
+        }
+
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// report issue button functionality
@@ -41,7 +49,7 @@ namespace MunicipalityApp
         private void eventsBtn_Click(object sender, EventArgs e)
         {
             // Create an instance of ReportIssues form
-            Events Announcements = new Events();
+            Events Announcements = new Events(this);
 
             // Set the Start form to hide when the ReportIssues form is opened
             this.Hide();  // Hide the Start form
