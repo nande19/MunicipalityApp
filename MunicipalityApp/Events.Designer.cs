@@ -52,7 +52,7 @@
             this.municipalityLbl.BackColor = System.Drawing.Color.Transparent;
             this.municipalityLbl.Font = new System.Drawing.Font("Modern No. 20", 16.2F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.municipalityLbl.Location = new System.Drawing.Point(245, 29);
+            this.municipalityLbl.Location = new System.Drawing.Point(333, 29);
             this.municipalityLbl.Name = "municipalityLbl";
             this.municipalityLbl.Size = new System.Drawing.Size(502, 30);
             this.municipalityLbl.TabIndex = 9;
@@ -63,7 +63,7 @@
             this.backBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.backBtn.BackColor = System.Drawing.Color.Crimson;
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backBtn.Location = new System.Drawing.Point(36, 13);
+            this.backBtn.Location = new System.Drawing.Point(124, 13);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(75, 67);
             this.backBtn.TabIndex = 15;
@@ -83,9 +83,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(55, 215);
+            this.listView1.Location = new System.Drawing.Point(86, 215);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(855, 397);
+            this.listView1.Size = new System.Drawing.Size(957, 397);
             this.listView1.TabIndex = 16;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -108,7 +108,7 @@
             // Location
             // 
             this.Location.Text = "Location";
-            this.Location.Width = 200;
+            this.Location.Width = 300;
             // 
             // searchbyDatelbl
             // 
@@ -117,7 +117,7 @@
             this.searchbyDatelbl.BackColor = System.Drawing.Color.Transparent;
             this.searchbyDatelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchbyDatelbl.ForeColor = System.Drawing.Color.White;
-            this.searchbyDatelbl.Location = new System.Drawing.Point(477, 93);
+            this.searchbyDatelbl.Location = new System.Drawing.Point(565, 93);
             this.searchbyDatelbl.Name = "searchbyDatelbl";
             this.searchbyDatelbl.Size = new System.Drawing.Size(139, 20);
             this.searchbyDatelbl.TabIndex = 18;
@@ -130,7 +130,7 @@
             this.searchbyCategorylbl.BackColor = System.Drawing.Color.Transparent;
             this.searchbyCategorylbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchbyCategorylbl.ForeColor = System.Drawing.Color.White;
-            this.searchbyCategorylbl.Location = new System.Drawing.Point(111, 92);
+            this.searchbyCategorylbl.Location = new System.Drawing.Point(199, 92);
             this.searchbyCategorylbl.Name = "searchbyCategorylbl";
             this.searchbyCategorylbl.Size = new System.Drawing.Size(174, 20);
             this.searchbyCategorylbl.TabIndex = 20;
@@ -151,7 +151,7 @@
             "Sports and Recreation ",
             "Educational and Job Creation ",
             "Other"});
-            this.comboBox1.Location = new System.Drawing.Point(291, 92);
+            this.comboBox1.Location = new System.Drawing.Point(379, 92);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(161, 24);
             this.comboBox1.TabIndex = 21;
@@ -161,7 +161,7 @@
             this.searchBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.searchBtn.BackColor = System.Drawing.Color.LimeGreen;
             this.searchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBtn.Location = new System.Drawing.Point(339, 156);
+            this.searchBtn.Location = new System.Drawing.Point(427, 156);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(132, 35);
             this.searchBtn.TabIndex = 22;
@@ -171,7 +171,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTimePicker1.Location = new System.Drawing.Point(622, 94);
+            this.dateTimePicker1.Location = new System.Drawing.Point(710, 94);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(225, 22);
             this.dateTimePicker1.TabIndex = 23;
@@ -181,7 +181,7 @@
             this.clearBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.clearBtn.BackColor = System.Drawing.Color.LimeGreen;
             this.clearBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearBtn.Location = new System.Drawing.Point(524, 156);
+            this.clearBtn.Location = new System.Drawing.Point(612, 156);
             this.clearBtn.Name = "clearBtn";
             this.clearBtn.Size = new System.Drawing.Size(132, 35);
             this.clearBtn.TabIndex = 24;
@@ -193,7 +193,7 @@
             this.recommendBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.recommendBtn.BackColor = System.Drawing.Color.LimeGreen;
             this.recommendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recommendBtn.Location = new System.Drawing.Point(625, 618);
+            this.recommendBtn.Location = new System.Drawing.Point(713, 618);
             this.recommendBtn.Name = "recommendBtn";
             this.recommendBtn.Size = new System.Drawing.Size(174, 42);
             this.recommendBtn.TabIndex = 25;
@@ -211,7 +211,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Olive;
             this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
-            this.ClientSize = new System.Drawing.Size(974, 672);
+            this.ClientSize = new System.Drawing.Size(1151, 672);
             this.Controls.Add(this.recommendBtn);
             this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.dateTimePicker1);
