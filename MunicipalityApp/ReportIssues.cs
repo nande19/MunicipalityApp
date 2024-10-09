@@ -8,7 +8,7 @@ namespace MunicipalityApp
     public partial class ReportIssues : Form
     {
         // List to store the reported issues
-        private List<IssueDetails> issueList = new List<IssueDetails>();
+        private List<IssueDetails> issueList;
 
         // List to store attached files
         private List<string> attachments = new List<string>();
@@ -25,6 +25,7 @@ namespace MunicipalityApp
         {
             InitializeComponent();
             this.startForm = startForm;  // Save the Start form reference
+            this.issueList = startForm.issueList; // Use the shared issueList from the Start form
 
         }
 
@@ -92,81 +93,53 @@ namespace MunicipalityApp
         /// <summary>
         /// Save button event handler
         /// </summary>
-            private void saveBtn_Click(object sender, EventArgs e)
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            try
             {
-                try
+                string location = locationTxt.Text;
+                string category = categoryBox.SelectedItem?.ToString();
+                string description = descriptionTxt.Text;
+
+                if (string.IsNullOrEmpty(location) || string.IsNullOrEmpty(category) || string.IsNullOrEmpty(description))
                 {
-                    string location = locationTxt.Text;
-                    string category = categoryBox.SelectedItem?.ToString();
-                    string description = descriptionTxt.Text;
-
-                    if (string.IsNullOrEmpty(location) || string.IsNullOrEmpty(category) || string.IsNullOrEmpty(description))
-                    {
-                        MessageBox.Show("Please fill in all required fields: Location, Category, and Description.",
-                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Check if an image has been attached
-                    if (attachments.Count == 0)
-                    {
-                        MessageBox.Show("Adding an image is required to submit the issue.",
-                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Check if all attachments exist
-                    foreach (var attachment in attachments)
-                    {
-                        if (!System.IO.File.Exists(attachment))
-                        {
-                            MessageBox.Show($"File does not exist: {attachment}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;  // Exit the method if any file is not found
-                        }
-                    }
-
-                    // Reset and update progress bar for saving process
-                    progressBar.Value = 0;
-                    progressBar.Value += 30;
-
-                    if (attachments.Count > 0)
-                    {
-                        progressBar.Value += 30;
-                    }
-
-                    IssueDetails newIssue = new IssueDetails(location, category, description, attachments);
-                    issueList.Add(newIssue);
-
-                    progressBar.Value = 100;
-
-                    MessageBox.Show("Your issue has been successfully reported!",
-                                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    ClearForm();  // Clear the form after successful submission
-
-                    ViewingIssues viewingIssuesForm = new ViewingIssues(issueList);
-
-                    this.Hide();
-
-                    viewingIssuesForm.FormClosed += (s, args) => this.Close();
-
-                    viewingIssuesForm.Show();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An error occurred while saving the issue: {ex.Message}",
+                    MessageBox.Show("Please fill in all required fields: Location, Category, and Description.",
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+
+                if (attachments.Count == 0)
+                {
+                    MessageBox.Show("Adding an image is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;  // Exit the method if no attachment is added
+                }
+
+                IssueDetails newIssue = new IssueDetails(location, category, description, attachments);
+                issueList.Add(newIssue);  // Add the new issue to the shared issueList
+
+                progressBar.Value = 100;
+
+                MessageBox.Show("Your issue has been successfully reported!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ClearForm();
+
+                ViewingIssues viewingIssuesForm = new ViewingIssues(issueList);
+                this.Hide();
+                viewingIssuesForm.Show();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while saving the issue: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
+        //--------------------------------------------------------------------------------------------------------//
 
-            //--------------------------------------------------------------------------------------------------------//
-
-            /// <summary>
-            /// This method clears all the input fields on the form.
-            /// </summary>
-            private void ClearForm()
+        /// <summary>
+        /// This method clears all the input fields on the form.
+        /// </summary>
+        private void ClearForm()
         {
             locationTxt.Clear();
             categoryBox.SelectedIndex = -1;
@@ -227,7 +200,7 @@ namespace MunicipalityApp
 //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// progress bar
+        /// progress bar updates
         /// </summary>
 
         private void locationTxt_TextChanged(object sender, EventArgs e)

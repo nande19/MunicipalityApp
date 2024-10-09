@@ -12,6 +12,9 @@ namespace MunicipalityApp
 {
     public partial class Start : Form
     {
+        // List to store issues (accessible across forms)
+        public List<IssueDetails> issueList = new List<IssueDetails>();
+
         public Start()
         {
             InitializeComponent();
