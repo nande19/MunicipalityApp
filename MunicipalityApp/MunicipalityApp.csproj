@@ -123,6 +123,7 @@
   <ItemGroup>
     <Content Include="Resources\city-of-ct.jpg" />
     <Content Include="Resources\City-of-Tshwane-Logo-768x740.png" />
+    <None Include="Resources\website_Tshwane.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

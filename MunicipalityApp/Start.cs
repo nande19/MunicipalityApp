@@ -61,15 +61,17 @@ namespace MunicipalityApp
         /// to be added
         /// </summary>
         private void serviceRequestBtn_Click(object sender, EventArgs e)
-        {
+            {
+                // Display a message box to inform the user
+                MessageBox.Show("Don't be impatient, coming soon!", "Service Request", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
-        }
-//--------------------------------------------------------------------------------------------------------//
+            //--------------------------------------------------------------------------------------------------------//
 
-        /// <summary>
-        /// Start Window
-        /// </summary>
-        private void Start_Load(object sender, EventArgs e)
+            /// <summary>
+            /// Start Window
+            /// </summary>
+            private void Start_Load(object sender, EventArgs e)
         {
             
         }

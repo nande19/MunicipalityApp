@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportIssues));
             this.locationLbl = new System.Windows.Forms.Label();
             this.descriptionLbl = new System.Windows.Forms.Label();
             this.photoAttachLbl = new System.Windows.Forms.Label();
@@ -49,7 +48,9 @@
             // 
             this.locationLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.locationLbl.AutoSize = true;
+            this.locationLbl.BackColor = System.Drawing.Color.Transparent;
             this.locationLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.locationLbl.ForeColor = System.Drawing.Color.White;
             this.locationLbl.Location = new System.Drawing.Point(72, 124);
             this.locationLbl.Name = "locationLbl";
             this.locationLbl.Size = new System.Drawing.Size(87, 20);
@@ -60,8 +61,10 @@
             // 
             this.descriptionLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.descriptionLbl.AutoSize = true;
+            this.descriptionLbl.BackColor = System.Drawing.Color.Transparent;
             this.descriptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionLbl.Location = new System.Drawing.Point(72, 263);
+            this.descriptionLbl.ForeColor = System.Drawing.Color.White;
+            this.descriptionLbl.Location = new System.Drawing.Point(72, 282);
             this.descriptionLbl.Name = "descriptionLbl";
             this.descriptionLbl.Size = new System.Drawing.Size(106, 20);
             this.descriptionLbl.TabIndex = 3;
@@ -71,7 +74,9 @@
             // 
             this.photoAttachLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.photoAttachLbl.AutoSize = true;
+            this.photoAttachLbl.BackColor = System.Drawing.Color.Transparent;
             this.photoAttachLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.photoAttachLbl.ForeColor = System.Drawing.Color.White;
             this.photoAttachLbl.Location = new System.Drawing.Point(72, 387);
             this.photoAttachLbl.Name = "photoAttachLbl";
             this.photoAttachLbl.Size = new System.Drawing.Size(133, 20);
@@ -82,6 +87,7 @@
             // 
             this.municipalityLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.municipalityLbl.AutoSize = true;
+            this.municipalityLbl.BackColor = System.Drawing.Color.Transparent;
             this.municipalityLbl.Font = new System.Drawing.Font("Modern No. 20", 16.2F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.municipalityLbl.Location = new System.Drawing.Point(302, 40);
@@ -103,7 +109,9 @@
             // 
             this.categoryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.categoryLbl.AutoSize = true;
+            this.categoryLbl.BackColor = System.Drawing.Color.Transparent;
             this.categoryLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryLbl.ForeColor = System.Drawing.Color.White;
             this.categoryLbl.Location = new System.Drawing.Point(72, 192);
             this.categoryLbl.Name = "categoryLbl";
             this.categoryLbl.Size = new System.Drawing.Size(223, 20);
@@ -204,7 +212,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
             this.ClientSize = new System.Drawing.Size(782, 653);
             this.Controls.Add(this.imagePicture);
             this.Controls.Add(this.saveBtn);

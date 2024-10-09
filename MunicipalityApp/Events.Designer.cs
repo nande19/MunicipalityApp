@@ -31,6 +31,10 @@
             this.municipalityLbl = new System.Windows.Forms.Label();
             this.backBtn = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Duration = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Location = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.searchbyDatelbl = new System.Windows.Forms.Label();
             this.searchbyCategorylbl = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -38,12 +42,14 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.clearBtn = new System.Windows.Forms.Button();
             this.recommendBtn = new System.Windows.Forms.Button();
+            this.Event = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // municipalityLbl
             // 
             this.municipalityLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.municipalityLbl.AutoSize = true;
+            this.municipalityLbl.BackColor = System.Drawing.Color.Transparent;
             this.municipalityLbl.Font = new System.Drawing.Font("Modern No. 20", 16.2F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.municipalityLbl.Location = new System.Drawing.Point(245, 29);
@@ -68,20 +74,52 @@
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Date,
+            this.Event,
+            this.Duration,
+            this.Category,
+            this.Location});
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(140, 215);
+            this.listView1.Location = new System.Drawing.Point(55, 215);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(700, 397);
+            this.listView1.Size = new System.Drawing.Size(855, 397);
             this.listView1.TabIndex = 16;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // Date
+            // 
+            this.Date.Text = "Date";
+            this.Date.Width = 100;
+            // 
+            // Duration
+            // 
+            this.Duration.Text = "Duration";
+            this.Duration.Width = 150;
+            // 
+            // Category
+            // 
+            this.Category.Text = "Category";
+            this.Category.Width = 200;
+            // 
+            // Location
+            // 
+            this.Location.Text = "Location";
+            this.Location.Width = 200;
             // 
             // searchbyDatelbl
             // 
             this.searchbyDatelbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.searchbyDatelbl.AutoSize = true;
+            this.searchbyDatelbl.BackColor = System.Drawing.Color.Transparent;
+            this.searchbyDatelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchbyDatelbl.ForeColor = System.Drawing.Color.White;
             this.searchbyDatelbl.Location = new System.Drawing.Point(477, 93);
             this.searchbyDatelbl.Name = "searchbyDatelbl";
-            this.searchbyDatelbl.Size = new System.Drawing.Size(100, 16);
+            this.searchbyDatelbl.Size = new System.Drawing.Size(139, 20);
             this.searchbyDatelbl.TabIndex = 18;
             this.searchbyDatelbl.Text = "Search by Date";
             // 
@@ -89,9 +127,12 @@
             // 
             this.searchbyCategorylbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.searchbyCategorylbl.AutoSize = true;
-            this.searchbyCategorylbl.Location = new System.Drawing.Point(178, 93);
+            this.searchbyCategorylbl.BackColor = System.Drawing.Color.Transparent;
+            this.searchbyCategorylbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchbyCategorylbl.ForeColor = System.Drawing.Color.White;
+            this.searchbyCategorylbl.Location = new System.Drawing.Point(111, 92);
             this.searchbyCategorylbl.Name = "searchbyCategorylbl";
-            this.searchbyCategorylbl.Size = new System.Drawing.Size(126, 16);
+            this.searchbyCategorylbl.Size = new System.Drawing.Size(174, 20);
             this.searchbyCategorylbl.TabIndex = 20;
             this.searchbyCategorylbl.Text = "Search by Category";
             // 
@@ -110,7 +151,7 @@
             "Sports and Recreation ",
             "Educational and Job Creation ",
             "Other"});
-            this.comboBox1.Location = new System.Drawing.Point(310, 90);
+            this.comboBox1.Location = new System.Drawing.Point(291, 92);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(161, 24);
             this.comboBox1.TabIndex = 21;
@@ -130,7 +171,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTimePicker1.Location = new System.Drawing.Point(593, 92);
+            this.dateTimePicker1.Location = new System.Drawing.Point(622, 94);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(225, 22);
             this.dateTimePicker1.TabIndex = 23;
@@ -159,12 +200,17 @@
             this.recommendBtn.Text = "Recommendations";
             this.recommendBtn.UseVisualStyleBackColor = false;
             // 
+            // Event
+            // 
+            this.Event.Text = "Event";
+            this.Event.Width = 200;
+            // 
             // Events
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Olive;
-            this.BackgroundImage = global::MunicipalityApp.Properties.Resources.City_of_Tshwane_Logo_768x01;
+            this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
             this.ClientSize = new System.Drawing.Size(974, 672);
             this.Controls.Add(this.recommendBtn);
             this.Controls.Add(this.clearBtn);
@@ -195,5 +241,10 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.Button recommendBtn;
+        private System.Windows.Forms.ColumnHeader Date;
+        private System.Windows.Forms.ColumnHeader Duration;
+        private System.Windows.Forms.ColumnHeader Category;
+        private System.Windows.Forms.ColumnHeader Location;
+        private System.Windows.Forms.ColumnHeader Event;
     }
 }
