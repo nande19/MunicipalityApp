@@ -38,7 +38,6 @@
             this.Category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Attachment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.removeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // viewingLbl
@@ -110,19 +109,6 @@
             this.Attachment.Text = "Attachment";
             this.Attachment.Width = 300;
             // 
-            // removeBtn
-            // 
-            this.removeBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.removeBtn.BackColor = System.Drawing.Color.Red;
-            this.removeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeBtn.Location = new System.Drawing.Point(936, 605);
-            this.removeBtn.Name = "removeBtn";
-            this.removeBtn.Size = new System.Drawing.Size(75, 23);
-            this.removeBtn.TabIndex = 16;
-            this.removeBtn.Text = "Remove";
-            this.removeBtn.UseVisualStyleBackColor = false;
-            this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
-            // 
             // ViewingIssues
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -130,12 +116,12 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1053, 670);
-            this.Controls.Add(this.removeBtn);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.viewLstVw);
             this.Controls.Add(this.viewingLbl);
             this.Name = "ViewingIssues";
             this.Text = "Viewing Issues";
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ViewingIssues_MouseClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,6 +136,5 @@
         private System.Windows.Forms.ColumnHeader Category;
         private System.Windows.Forms.ColumnHeader Description;
         private System.Windows.Forms.ColumnHeader Attachment;
-        private System.Windows.Forms.Button removeBtn;
     }
 }

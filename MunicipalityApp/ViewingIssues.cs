@@ -34,6 +34,9 @@ namespace MunicipalityApp
 
             // Populate the ListView with data
             PopulateIssuesGrid();
+
+            // Attach the MouseClick event handler
+            viewLstVw.MouseClick += ViewingIssues_MouseClick;
         }
 
         //--------------------------------------------------------------------------------------------------------//
@@ -110,12 +113,53 @@ namespace MunicipalityApp
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// Event handler for the back button click event
+        /// Event handler for ListView item click
         /// </summary>
-        private void removeBtn_Click(object sender, EventArgs e)
+        private void ViewingIssues_MouseClick(object sender, MouseEventArgs e)
         {
+            if (viewLstVw.SelectedItems.Count > 0)
+            {
+                // Get the selected item
+                var selectedItem = viewLstVw.SelectedItems[0];
 
+                // Get details from the selected item
+                string location = selectedItem.Text;
+                string category = selectedItem.SubItems[1].Text;
+                string description = selectedItem.SubItems[2].Text;
+
+                // Show a message box with the details and options to delete
+                var result = MessageBox.Show(
+                    $"Location: {location}\nCategory: {category}\nDescription: {description}\n\nDo you want to delete this issue?",
+                    "Issue Details",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Information
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    // Ask for confirmation
+                    var confirmationResult = MessageBox.Show(
+                        "Are you sure you want to delete this issue?",
+                        "Confirm Deletion",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (confirmationResult == DialogResult.Yes)
+                    {
+                        // Remove the selected issue from the issueList
+                        var issueToRemove = issueList.FirstOrDefault(i => i.Location == location && i.Category == category && i.Description == description);
+                        if (issueToRemove != null)
+                        {
+                            issueList.Remove(issueToRemove);
+                        }
+
+                        // Refresh the ListView
+                        PopulateIssuesGrid();
+                    }
+                }
+            }
         }
     }
 }
-        //---------------------------------------- END OF FILE -------------------------------------------------------//
+//---------------------------------------- END OF FILE -------------------------------------------------------//
