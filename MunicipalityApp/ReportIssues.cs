@@ -144,7 +144,6 @@ namespace MunicipalityApp
             locationTxt.Clear();
             categoryBox.SelectedIndex = -1;
             descriptionTxt.Clear();
-            attachments.Clear();
             imagePicture.Image = null; // Clear the PictureBox
 
         }

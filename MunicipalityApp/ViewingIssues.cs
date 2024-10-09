@@ -23,73 +23,74 @@ namespace MunicipalityApp
             // Initialize and configure the ImageList
             attachmentsImageList = new ImageList
             {
-                ImageSize = new Size(100, 100),  // Set the size of the images in the ImageList
+                ImageSize = new Size(50, 50),  // Set the size of the images in the ImageList for better visibility
                 ColorDepth = ColorDepth.Depth24Bit
             };
 
             // Set up ListView with columns
             viewLstVw.View = View.Details;  // Set view to Details
-            viewLstVw.Columns.Add("Issues", 800);  // Add a single column for displaying issues
-            viewLstVw.Columns.Add("Attachments", 200);  // Add column for image attachments
+            viewLstVw.FullRowSelect = true;  // Select full row when an item is clicked
             viewLstVw.SmallImageList = attachmentsImageList;  // Assign the ImageList to the ListView
 
-            PopulateIssuesGrid();  // Call the method to populate the grid
+            // Populate the ListView with data
+            PopulateIssuesGrid();
         }
 
-       
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// Method to populate the ListView with issue details
         /// </summary>
-
         private void PopulateIssuesGrid()
-{
-    // Clear existing items and images
-    viewLstVw.Items.Clear();
-    attachmentsImageList.Images.Clear();
-
-    foreach (var issue in issueList)
-    {
-        string issueDetails = $"Location: {issue.Location}, " +
-                              $"Category: {issue.Category}, " +
-                              $"Description: {issue.Description}";
-
-        ListViewItem item = new ListViewItem(issueDetails);
-
-        // Add attachment details to ListView item
-        if (issue.Attachments.Count > 0)
         {
-            string attachmentDetails = string.Join(", ", issue.Attachments);
-            item.SubItems.Add(attachmentDetails);
+            viewLstVw.Items.Clear();
+            attachmentsImageList.Images.Clear();
 
-            foreach (string attachment in issue.Attachments)
+            foreach (var issue in issueList)
             {
-                try
+                // Create a ListViewItem with the location as the main text
+                ListViewItem item = new ListViewItem(issue.Location)
                 {
-                    // Load image and add to ImageList
-                    Image image = Image.FromFile(attachment);
-                    string imageKey = System.IO.Path.GetFileName(attachment);
-
-                    // Debugging: Verify image and key
-                    MessageBox.Show($"Adding image: {attachment} with key: {imageKey}", "Attachment", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    attachmentsImageList.Images.Add(imageKey, image);
-
-                    // Set image index in ListViewItem
-                    item.ImageKey = imageKey;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error loading image {attachment}: {ex.Message}",
-                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    SubItems = {
+                issue.Category,
+                issue.Description
             }
+                };
+
+                // Check if there are attachments
+                if (issue.Attachments.Count > 0)
+                {
+                    string firstAttachment = issue.Attachments.First();
+                    try
+                    {
+                        // Load the image and add it to the ImageList
+                        Image image = Image.FromFile(firstAttachment);
+                        string imageKey = System.IO.Path.GetFileName(firstAttachment);
+                        attachmentsImageList.Images.Add(imageKey, image);
+
+                        // Set the image key for the ListViewItem
+                        item.ImageKey = imageKey; // Set the image key to show in the ListView
+                        item.SubItems.Add(firstAttachment); // Add the file path in the attachments column
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error loading image {firstAttachment}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        item.SubItems.Add("Error loading image"); // Indicate error in loading image
+                    }
+                }
+                else
+                {
+                    item.SubItems.Add("No attachments");  // Indicate no attachments
+                }
+
+                viewLstVw.Items.Add(item); // Add the item to the ListView
+            }
+
+           
+       
         }
 
-        viewLstVw.Items.Add(item);
-    }
-}
+
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
@@ -105,6 +106,16 @@ namespace MunicipalityApp
 
             this.Close(); // Close the form
         }
+
+        //--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// Event handler for the back button click event
+        /// </summary>
+        private void removeBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-//---------------------------------------- END OF FILE -------------------------------------------------------//
+        //---------------------------------------- END OF FILE -------------------------------------------------------//

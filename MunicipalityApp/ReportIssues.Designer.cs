@@ -132,7 +132,9 @@
             "Environment",
             "Streetlights",
             "Water Supply",
-            "Waste Management"});
+            "Waste Management",
+            "Electricity",
+            "Other"});
             this.categoryBox.Location = new System.Drawing.Point(343, 188);
             this.categoryBox.Name = "categoryBox";
             this.categoryBox.Size = new System.Drawing.Size(230, 24);
