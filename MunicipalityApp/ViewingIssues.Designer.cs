@@ -66,7 +66,7 @@
             this.viewLstVw.HideSelection = false;
             this.viewLstVw.Location = new System.Drawing.Point(78, 159);
             this.viewLstVw.Name = "viewLstVw";
-            this.viewLstVw.Size = new System.Drawing.Size(806, 450);
+            this.viewLstVw.Size = new System.Drawing.Size(858, 450);
             this.viewLstVw.TabIndex = 2;
             this.viewLstVw.UseCompatibleStateImageBehavior = false;
             this.viewLstVw.View = System.Windows.Forms.View.Details;
@@ -89,7 +89,7 @@
             // Attachment
             // 
             this.Attachment.Text = "Attachment";
-            this.Attachment.Width = 300;
+            this.Attachment.Width = 350;
             // 
             // backBtn
             // 
