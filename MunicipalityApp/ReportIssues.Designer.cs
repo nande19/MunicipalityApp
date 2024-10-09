@@ -179,6 +179,7 @@
             // 
             // imagePicture
             // 
+            this.imagePicture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.imagePicture.BackColor = System.Drawing.Color.White;
             this.imagePicture.Location = new System.Drawing.Point(343, 387);
             this.imagePicture.Name = "imagePicture";
