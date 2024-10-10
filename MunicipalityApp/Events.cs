@@ -32,8 +32,6 @@ namespace MunicipalityApp
             eventCategoriesSet = new HashSet<string>();
             priorityQueue = new PriorityQueue<EventDetails>();  // Use the custom priority queue
 
-            // Setup ListView columns
-            SetupListViewColumns();
 
             // Add sample events to the dictionary for demonstration
             AddSampleEvents();
@@ -51,21 +49,7 @@ namespace MunicipalityApp
             // Display events in the ListView
             DisplayEvents();
         }
-        //--------------------------------------------------------------------------------------------------------//
-
-        /// <summary>
-        /// Set up the ListView with the necessary columns for event data.
-        /// </summary>
-        private void SetupListViewColumns()
-        {
-            eventslstview.Columns.Clear();  // Clear existing columns
-            eventslstview.View = View.Details;
-            eventslstview.Columns.Add("Date", 150);
-            eventslstview.Columns.Add("Event", 200);
-            eventslstview.Columns.Add("Duration", 100);
-            eventslstview.Columns.Add("Category", 150);
-            eventslstview.Columns.Add("Location", 150);
-        }
+       
 
         //--------------------------------------------------------------------------------------------------------//
 
