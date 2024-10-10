@@ -19,14 +19,17 @@ namespace MunicipalityApp
         public string Duration { get; set; }
         public string Category { get; set; }
         public string Location { get; set; }
+        public string Description { get; set; }  // New Description field
 
-        public EventDetails(DateTime date, string eventName, string duration, string category, string location)
+        public EventDetails(DateTime date, string eventName, string duration, string category, string location, string description)
         {
             Date = date;
             EventName = eventName;
             Duration = duration;
             Category = category;
             Location = location;
+            Description = description;  
+
         }
     }
 }
