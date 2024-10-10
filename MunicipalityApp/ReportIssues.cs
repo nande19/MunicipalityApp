@@ -14,7 +14,7 @@ namespace MunicipalityApp
         private List<string> attachments = new List<string>();
 
         private Start startForm;  // Reference to the Start form
-
+        private ViewingIssues viewForm;
 
         //--------------------------------------------------------------------------------------------------------//
         /// <summary>
@@ -228,6 +228,31 @@ namespace MunicipalityApp
         private void progressBar_Click(object sender, EventArgs e)
         {
 
+        }
+//--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// viewing issues button
+        /// </summary>
+        private void viewBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Initialize the ViewingIssues form if it is null
+                if (viewForm == null || viewForm.IsDisposed)
+                {
+                    viewForm = new ViewingIssues(issueList); // Pass the issue list to the ViewingIssues form
+                }
+
+                // Show the ViewingIssues form
+                viewForm.Show();
+                this.Hide();  // Hide the current form to display the ViewingIssues form
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while navigating to the Viewing Issues page: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

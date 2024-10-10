@@ -41,6 +41,7 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.imagePicture = new System.Windows.Forms.PictureBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.viewBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imagePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -207,6 +208,19 @@
             this.progressBar.TabIndex = 15;
             this.progressBar.Click += new System.EventHandler(this.progressBar_Click);
             // 
+            // viewBtn
+            // 
+            this.viewBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.viewBtn.BackColor = System.Drawing.Color.LimeGreen;
+            this.viewBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewBtn.Location = new System.Drawing.Point(521, 563);
+            this.viewBtn.Name = "viewBtn";
+            this.viewBtn.Size = new System.Drawing.Size(132, 43);
+            this.viewBtn.TabIndex = 18;
+            this.viewBtn.Text = "Viewing Issues";
+            this.viewBtn.UseVisualStyleBackColor = false;
+            this.viewBtn.Click += new System.EventHandler(this.viewBtn_Click);
+            // 
             // ReportIssues
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -214,6 +228,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
             this.ClientSize = new System.Drawing.Size(782, 653);
+            this.Controls.Add(this.viewBtn);
             this.Controls.Add(this.imagePicture);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.progressBar);
@@ -249,5 +264,6 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.PictureBox imagePicture;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Button viewBtn;
     }
 }

@@ -46,7 +46,7 @@
             this.viewingLbl.BackColor = System.Drawing.Color.Transparent;
             this.viewingLbl.Font = new System.Drawing.Font("Modern No. 20", 16.2F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))));
-            this.viewingLbl.Location = new System.Drawing.Point(386, 50);
+            this.viewingLbl.Location = new System.Drawing.Point(421, 50);
             this.viewingLbl.Name = "viewingLbl";
             this.viewingLbl.Size = new System.Drawing.Size(228, 30);
             this.viewingLbl.TabIndex = 1;
@@ -64,9 +64,9 @@
             this.viewLstVw.FullRowSelect = true;
             this.viewLstVw.GridLines = true;
             this.viewLstVw.HideSelection = false;
-            this.viewLstVw.Location = new System.Drawing.Point(78, 159);
+            this.viewLstVw.Location = new System.Drawing.Point(53, 150);
             this.viewLstVw.Name = "viewLstVw";
-            this.viewLstVw.Size = new System.Drawing.Size(858, 450);
+            this.viewLstVw.Size = new System.Drawing.Size(1009, 450);
             this.viewLstVw.TabIndex = 2;
             this.viewLstVw.UseCompatibleStateImageBehavior = false;
             this.viewLstVw.View = System.Windows.Forms.View.Details;
@@ -89,14 +89,14 @@
             // Attachment
             // 
             this.Attachment.Text = "Attachment";
-            this.Attachment.Width = 350;
+            this.Attachment.Width = 500;
             // 
             // backBtn
             // 
             this.backBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.backBtn.BackColor = System.Drawing.Color.Crimson;
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backBtn.Location = new System.Drawing.Point(54, 39);
+            this.backBtn.Location = new System.Drawing.Point(89, 39);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(80, 65);
             this.backBtn.TabIndex = 15;
@@ -116,7 +116,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
-            this.ClientSize = new System.Drawing.Size(1053, 670);
+            this.ClientSize = new System.Drawing.Size(1122, 670);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.viewLstVw);
             this.Controls.Add(this.viewingLbl);
