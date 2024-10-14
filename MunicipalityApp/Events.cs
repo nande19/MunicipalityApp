@@ -13,7 +13,6 @@ namespace MunicipalityApp
     public partial class Events : Form
     {
         private Start startForm;  // Reference to the Start form
-        private Recommendations recommended;
         private SortedDictionary<DateTime, EventDetails> eventsDictionary;  // SortedDictionary to store events by date
         private Stack<EventDetails> undoStack;  // Stack to manage undo operations
         private Queue<EventDetails> eventQueue;  // Queue to manage upcoming events
@@ -183,6 +182,52 @@ namespace MunicipalityApp
 
         }
 
+
+        public List<EventDetails> GetRecommendedEvents(string searchCategory)
+        {
+            List<string> relatedCategories = new List<string>();
+
+            // Determine related categories based on the search
+            if (searchCategory.Contains("Music"))
+            {
+                relatedCategories.Add("Educational and Job Creation");
+                relatedCategories.Add("Arts and Culture");
+                relatedCategories.Add("Festival");
+            }
+            else if (searchCategory.Contains("Sports"))
+            {
+                relatedCategories.Add("Festival");
+            }
+            else if (searchCategory.Contains("Educational"))
+            {
+                relatedCategories.Add("Festival");
+            }
+            else if (searchCategory.Contains("Festival"))
+            {
+                relatedCategories.Add("Sports and Recreation");
+                relatedCategories.Add("Arts and Culture");
+            }
+
+            // Find events with related categories
+            return eventQueue.Where(e => relatedCategories.Contains(e.Category)).ToList();
+        }
+
+
+        private void DisplayRecommendedEvents(string searchCategory)
+        {
+            // Clear existing rows
+            recomdataGridView.Rows.Clear();
+
+            // Get recommended events based on user search
+            List<EventDetails> recommendedEvents = GetRecommendedEvents(searchCategory);
+
+            // Display each event in the DataGridView
+            foreach (var ev in recommendedEvents)
+            {
+                recomdataGridView.Rows.Add(ev.Date.ToShortDateString(), ev.EventName, ev.Duration, ev.Category, ev.Location);
+            }
+        }
+
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
@@ -261,24 +306,8 @@ namespace MunicipalityApp
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-//--------------------------------------------------------------------------------------------------------//
 
-        /// <summary>
-        /// category picker
-        /// </summary>
-        private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-//--------------------------------------------------------------------------------------------------------//
-
-        /// <summary>
-        /// date picker
-        /// </summary>
-        private void datePicker_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
@@ -355,23 +384,18 @@ namespace MunicipalityApp
 
         private void recommendBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Check if the Recommendations form is null or already closed
-                if (recommended == null || recommended.IsDisposed)
-                {
-                    recommended = new Recommendations();  // Instantiate the Recommendations form
-                }
+            
+        }
 
-                recommended.Show();  // Show the Recommendations form
-                this.Hide();  // Optionally hide the current Events form
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while navigating to the Recommendations page: {ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        private void datePicker_ValueChanged(object sender, EventArgs e)
+        {
+
         }
+
+        private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
+    }
 }
         //---------------------------------------- END OF FILE -------------------------------------------------------//
