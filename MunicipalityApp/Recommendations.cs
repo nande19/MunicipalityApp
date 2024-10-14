@@ -45,24 +45,8 @@ namespace MunicipalityApp
             }
         
     }
-//--------------------------------------------------------------------------------------------------------//
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private void recommendBtn_Click(object sender, EventArgs e)
-        {
 
-        }
-//--------------------------------------------------------------------------------------------------------//
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void eventslstview_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
         //---------------------------------------- END OF FILE -------------------------------------------------------//

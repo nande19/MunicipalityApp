@@ -24,7 +24,6 @@ namespace MunicipalityApp
         {
             InitializeComponent();
             this.startForm = startForm;  // Save the Start form reference
-            this.recommended = recommended;
 
             // Initialize the advanced data structures
             eventsDictionary = new SortedDictionary<DateTime, EventDetails>();
