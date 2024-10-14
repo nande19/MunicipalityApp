@@ -209,6 +209,7 @@
             this.recommendBtn.TabIndex = 25;
             this.recommendBtn.Text = "Recommendations";
             this.recommendBtn.UseVisualStyleBackColor = false;
+            this.recommendBtn.Click += new System.EventHandler(this.recommendBtn_Click);
             // 
             // Events
             // 

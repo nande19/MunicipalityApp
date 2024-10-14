@@ -13,6 +13,7 @@ namespace MunicipalityApp
     public partial class Events : Form
     {
         private Start startForm;  // Reference to the Start form
+        private Recommendations recommended;
         private SortedDictionary<DateTime, EventDetails> eventsDictionary;  // SortedDictionary to store events by date
         private Stack<EventDetails> undoStack;  // Stack to manage undo operations
         private Queue<EventDetails> eventQueue;  // Queue to manage upcoming events
@@ -23,7 +24,7 @@ namespace MunicipalityApp
         {
             InitializeComponent();
             this.startForm = startForm;  // Save the Start form reference
-
+            this.recommended = recommended;
 
             // Initialize the advanced data structures
             eventsDictionary = new SortedDictionary<DateTime, EventDetails>();
@@ -264,7 +265,7 @@ namespace MunicipalityApp
 //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// 
+        /// category picker
         /// </summary>
         private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -273,7 +274,7 @@ namespace MunicipalityApp
 //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// 
+        /// date picker
         /// </summary>
         private void datePicker_ValueChanged(object sender, EventArgs e)
         {
@@ -282,7 +283,7 @@ namespace MunicipalityApp
 //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// 
+        /// allows the users to filter through data
         /// </summary>
         private void searchBtn_Click(object sender, EventArgs e)
         {
@@ -315,10 +316,8 @@ namespace MunicipalityApp
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// 
+        /// Method to display events based on the selected category
         /// </summary>
-
-        // Method to display events based on the selected category
 
         private void DisplayFilteredEvents(List<EventDetails> filteredEvents)
         {
@@ -343,7 +342,7 @@ namespace MunicipalityApp
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// 
+        /// clears the filtering
         /// </summary>
         private void clearBtn_Click(object sender, EventArgs e)
         {
@@ -354,6 +353,26 @@ namespace MunicipalityApp
             // Display all events
             DisplayEvents();
         }
-    }
+
+        private void recommendBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Check if the Recommendations form is null or already closed
+                if (recommended == null || recommended.IsDisposed)
+                {
+                    recommended = new Recommendations();  // Instantiate the Recommendations form
+                }
+
+                recommended.Show();  // Show the Recommendations form
+                this.Hide();  // Optionally hide the current Events form
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while navigating to the Recommendations page: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        }
 }
         //---------------------------------------- END OF FILE -------------------------------------------------------//
