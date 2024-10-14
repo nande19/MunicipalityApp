@@ -47,8 +47,8 @@
             this.recDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.recCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.recLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.categoryPicker = new System.Windows.Forms.ComboBox();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.recomdataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -191,6 +191,7 @@
             // recomdataGridView
             // 
             this.recomdataGridView.AllowUserToOrderColumns = true;
+            this.recomdataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.recomdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.recomdataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.recDate,
@@ -240,15 +241,6 @@
             this.recLocation.Name = "recLocation";
             this.recLocation.Width = 250;
             // 
-            // datePicker
-            // 
-            this.datePicker.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.datePicker.Location = new System.Drawing.Point(644, 76);
-            this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(225, 22);
-            this.datePicker.TabIndex = 23;
-            this.datePicker.ValueChanged += new System.EventHandler(this.datePicker_ValueChanged);
-            // 
             // categoryPicker
             // 
             this.categoryPicker.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -269,6 +261,15 @@
             this.categoryPicker.Size = new System.Drawing.Size(286, 24);
             this.categoryPicker.TabIndex = 21;
             this.categoryPicker.SelectedIndexChanged += new System.EventHandler(this.categoryPicker_SelectedIndexChanged);
+            // 
+            // datePicker
+            // 
+            this.datePicker.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.datePicker.Location = new System.Drawing.Point(644, 76);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(225, 22);
+            this.datePicker.TabIndex = 23;
+            this.datePicker.ValueChanged += new System.EventHandler(this.datePicker_ValueChanged);
             // 
             // Events
             // 
@@ -317,7 +318,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn recDuration;
         private System.Windows.Forms.DataGridViewTextBoxColumn recCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn recLocation;
-        private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.ComboBox categoryPicker;
+        private System.Windows.Forms.DateTimePicker datePicker;
     }
 }

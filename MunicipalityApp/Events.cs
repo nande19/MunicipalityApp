@@ -45,6 +45,9 @@ namespace MunicipalityApp
             // Bind clear button click event
             clearBtn.Click += clearBtn_Click;  // Add this line to bind the clear button event
 
+            // Bind recommendations button click event
+            recommendBtn.Click += recommendBtn_Click;
+
             // Display events in the ListView
             DisplayEvents();
         }
@@ -181,7 +184,11 @@ namespace MunicipalityApp
             eventCategoriesSet.Add(event17.Category);
 
         }
+        //--------------------------------------------------------------------------------------------------------//
 
+        /// <summary>
+        /// 
+        /// </summary>
 
         public List<EventDetails> GetRecommendedEvents(string searchCategory)
         {
@@ -213,45 +220,73 @@ namespace MunicipalityApp
         }
 
 
-        private void DisplayRecommendedEvents(string searchCategory)
-        {
-            // Clear existing rows
-            recomdataGridView.Rows.Clear();
-
-            // Get recommended events based on user search
-            List<EventDetails> recommendedEvents = GetRecommendedEvents(searchCategory);
-
-            // Display each event in the DataGridView
-            foreach (var ev in recommendedEvents)
-            {
-                recomdataGridView.Rows.Add(ev.Date.ToShortDateString(), ev.EventName, ev.Duration, ev.Category, ev.Location);
-            }
-        }
 
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// Display events from the SortedDictionary in the ListView.
+        /// 
         /// </summary>
-        private void DisplayEvents()
+        private void DisplayRecommendedEvents(string searchCategory)
         {
-            eventslstview.Items.Clear();  // Clear existing items in ListView
-
-            foreach (var eventDetail in eventsDictionary.Values)
             {
-                ListViewItem item = new ListViewItem(eventDetail.Date.ToString("yyyy-MM-dd"))
-                {
-                    SubItems = {
-                        eventDetail.EventName,
-                        eventDetail.Duration,
-                        eventDetail.Category,
-                        eventDetail.Location
-                    }
-                };
+                // Clear existing rows in the recommendations DataGridView
+                recomdataGridView.Rows.Clear();
 
-                eventslstview.Items.Add(item);  // Add item to ListView
+                // Get recommended events based on the selected category
+                var recommendedEvents = GetRecommendedEvents(searchCategory);
+
+                // Add recommended events to the DataGridView
+                if (recommendedEvents != null && recommendedEvents.Count > 0)
+                {
+                    foreach (var eventDetail in recommendedEvents)
+                    {
+                        // Add a new row to the DataGridView for each recommended event
+                        recomdataGridView.Rows.Add(
+                            eventDetail.Date.ToShortDateString(),
+                            eventDetail.EventName,
+                            eventDetail.Duration,
+                            eventDetail.Category,
+                            eventDetail.Location,
+                            eventDetail.Description
+                        ); // Ensure 'eventDetail.Description' is defined
+                    }
+                }
+                else
+                {
+                    // Optionally, add a message indicating no recommendations found
+                    //MessageBox.Show("No recommendations found for the selected category.", "Recommendations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
+
+
+            //--------------------------------------------------------------------------------------------------------//
+
+            /// <summary>
+            /// Display events from the SortedDictionary in the ListView.
+            /// </summary>
+            private void DisplayEvents()
+        {
+            // Clear existing items in the ListView
+            eventslstview.Items.Clear();
+
+            // Loop through each event in the SortedDictionary and add it to the ListView
+            foreach (var eventDetail in eventsDictionary.Values)
+            {
+                if (eventDetail != null) // Check for null before accessing properties
+                {
+                    ListViewItem item = new ListViewItem(eventDetail.Date.ToShortDateString());
+                    item.SubItems.Add(eventDetail.EventName);
+                    item.SubItems.Add(eventDetail.Duration);
+                    item.SubItems.Add(eventDetail.Category);
+                    item.SubItems.Add(eventDetail.Location);
+                    item.SubItems.Add(eventDetail.Description);
+
+                    eventslstview.Items.Add(item);
+                }
+            }
+        }
+    
 
         //--------------------------------------------------------------------------------------------------------//
 
@@ -271,8 +306,8 @@ namespace MunicipalityApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while navigating back: {ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             //   MessageBox.Show($"An error occurred while navigating back: {ex.Message}",
+                            //    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -290,13 +325,22 @@ namespace MunicipalityApp
                 if (selectedItem != null)
                 {
                     // Extract the date of the clicked event (assumed to be in the first column)
-                    DateTime eventDate = DateTime.Parse(selectedItem.SubItems[0].Text);
-
-                    // Retrieve the event details from the SortedDictionary using the event date
-                    if (eventsDictionary.TryGetValue(eventDate, out EventDetails eventDetails))
+                    if (DateTime.TryParse(selectedItem.SubItems[0].Text, out DateTime eventDate))
                     {
-                        // Display the event description
-                        MessageBox.Show(eventDetails.Description, $"About {eventDetails.EventName}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Retrieve the event details from the SortedDictionary using the event date
+                        if (eventsDictionary.TryGetValue(eventDate, out EventDetails eventDetails))
+                        {
+                            // Display the event description
+                            MessageBox.Show(eventDetails.Description, $"About {eventDetails.EventName}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Event details not found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid event date format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -306,6 +350,7 @@ namespace MunicipalityApp
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+    
 
 
 //--------------------------------------------------------------------------------------------------------//
@@ -315,31 +360,36 @@ namespace MunicipalityApp
         /// </summary>
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            string selectedCategory = categoryPicker.SelectedItem?.ToString(); // Get selected category
+            // Get selected category
+            string selectedCategory = categoryPicker.SelectedItem?.ToString();
+
+            // Check if a category is selected
+            if (string.IsNullOrEmpty(selectedCategory))
+            {
+                MessageBox.Show("Please select a category before searching.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Exit if no category is selected
+            }
+
             DateTime selectedDate;
 
-            // Get the selected date if any (you need a date picker for this, e.g., datePicker.Value)
-            if (datePicker.Value != null)
-            {
-                selectedDate = datePicker.Value.Date; // Assume datePicker is a DateTimePicker control
-            }
-            else
-            {
-                // If no date is selected, set to a default value (e.g., today)
-                selectedDate = DateTime.Today;
-            }
+            // Get the selected date from the datePicker
+            selectedDate = datePicker.Value.Date; // Assume datePicker is a DateTimePicker control
+
+            // Display recommended events based on the selected category
+            DisplayRecommendedEvents(selectedCategory);
 
             // Filter events based on selected category and date
             var filteredEvents = eventsDictionary
                 .Where(eventEntry =>
-                    (string.IsNullOrEmpty(selectedCategory) || eventEntry.Value.Category == selectedCategory) &&
+                    eventEntry.Value.Category == selectedCategory &&  // Filter by selected category
                     eventEntry.Key.Date == selectedDate) // Filter by selected date
                 .Select(eventEntry => eventEntry.Value)
                 .ToList();
 
             // Display filtered events
             DisplayFilteredEvents(filteredEvents);
-        }
+        
+    }
 
         //--------------------------------------------------------------------------------------------------------//
 
@@ -351,19 +401,29 @@ namespace MunicipalityApp
         {
             eventslstview.Items.Clear();  // Clear existing items in ListView
 
-            foreach (var eventDetail in filteredEvents)
+            if (filteredEvents != null && filteredEvents.Count > 0)
             {
-                ListViewItem item = new ListViewItem(eventDetail.Date.ToString("yyyy-MM-dd"))
+                foreach (var eventDetail in filteredEvents)
                 {
-                    SubItems = {
+                    if (eventDetail != null) // Check for null before accessing properties
+                    {
+                        ListViewItem item = new ListViewItem(eventDetail.Date.ToString("yyyy-MM-dd"))
+                        {
+                            SubItems = {
                         eventDetail.EventName,
                         eventDetail.Duration,
                         eventDetail.Category,
                         eventDetail.Location
                     }
-                };
+                        };
 
-                eventslstview.Items.Add(item);  // Add item to ListView
+                        eventslstview.Items.Add(item);  // Add item to ListView
+                    }
+                }
+            }
+            else
+            {
+               // MessageBox.Show("No events found for the selected filters.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -387,12 +447,15 @@ namespace MunicipalityApp
             
         }
 
-        private void datePicker_ValueChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Enable or disable the recommendations button based on category selection
+            recommendBtn.Enabled = categoryPicker.SelectedIndex != -1;
+        }
+
+        private void datePicker_ValueChanged(object sender, EventArgs e)
         {
 
         }
