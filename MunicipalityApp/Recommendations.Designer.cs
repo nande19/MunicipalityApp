@@ -82,6 +82,8 @@
             this.eventslstview.TabIndex = 36;
             this.eventslstview.UseCompatibleStateImageBehavior = false;
             this.eventslstview.View = System.Windows.Forms.View.Details;
+            this.eventslstview.SelectedIndexChanged += new System.EventHandler(this.eventslstview_SelectedIndexChanged);
+            this.eventslstview.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recommend_MouseClick);
             // 
             // Date
             // 

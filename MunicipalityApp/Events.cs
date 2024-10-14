@@ -59,67 +59,67 @@ namespace MunicipalityApp
         private void AddSampleEvents()
         {
             // Sample event details
-            var event1 = new EventDetails(new DateTime(2024, 10, 10), "Music Festival", "3 hours", "Arts and Culture", "Freedom Park",
+            var event1 = new EventDetails(new DateTime(2024, 10, 10), "Music Festival", "9pm - 12am", "Arts and Culture", "Freedom Park",
                 "Join us for a vibrant music festival featuring local artists and musicians from across the country. A celebration of culture and music.");
 
-            var event2 = new EventDetails(new DateTime(2024, 11, 15), "Art Exhibition", "5 hours", "Arts and Culture", "Pretoria Showgrounds",
+            var event2 = new EventDetails(new DateTime(2024, 11, 15), "Art Exhibition", "9am - 2pm", "Arts and Culture", "Pretoria Showgrounds",
                 "An exhibition showcasing contemporary art from local and international artists. A great event for art lovers.");
 
-            var event3 = new EventDetails(new DateTime(2024, 12, 20), "DSTV Festival", "5 hours", "Festival", "Pretoria Showgrounds",
+            var event3 = new EventDetails(new DateTime(2024, 12, 20), "DSTV Festival", "4pm - 11pm", "Festival", "Pretoria Showgrounds",
                 "The DSTV Festival is packed with entertainment, food, and activities for the whole family. Expect live performances and celebrity appearances.");
 
-            var event4 = new EventDetails(new DateTime(2024, 12, 10), "International Jazz Festival", "6 hours", "Festival", "Pretoria National Botanical Garden",
+            var event4 = new EventDetails(new DateTime(2024, 12, 10), "International Jazz Festival", "10am - 10pm", "Festival", "Pretoria National Botanical Garden",
                 "A grand celebration of jazz with performances by world-renowned jazz artists. A must-attend for jazz enthusiasts.");
 
-            var event5 = new EventDetails(new DateTime(2024, 12, 01), "Tweede Nuwejaar (Minstrels, Malay Choirs and Christmas Bands)", "6 hours", "Arts and Culture", "State Theatre",
+            var event5 = new EventDetails(new DateTime(2024, 12, 01), "Tweede Nuwejaar (Minstrels, Malay Choirs and Christmas Bands)", "4pm - 8pm", "Arts and Culture", "State Theatre",
                 "A vibrant cultural celebration with colorful parades, music, and performances by minstrels, Malay choirs, and Christmas bands. " +
                 "This event marks the Cape Malay community’s tradition of Tweede Nuwejaar, celebrated with joyful processions and entertainment.");
 
-            var event6 = new EventDetails(new DateTime(2024, 11, 30), "Pretoria Carnival", "3 hours", "Other", "Pretoria National Botanical Garden",
+            var event6 = new EventDetails(new DateTime(2024, 11, 30), "Pretoria Carnival", "10am - 8pm", "Other", "Pretoria National Botanical Garden",
                 "A family-friendly carnival filled with parades, costumes, and floats. " +
                 "The Pretoria Carnival brings together various communities to celebrate diversity, culture, and creativity with lively street performances and artistic showcases.");
 
-            var event7 = new EventDetails(new DateTime(2024, 11, 25), "Pretoria Cycle Tour", "6 hours", "Sports and Recreation", "TBC",
+            var event7 = new EventDetails(new DateTime(2024, 11, 25), "Pretoria Cycle Tour", "4am - 2pm", "Sports and Recreation", "TBC",
                 "The Pretoria Cycle Tour is a scenic cycling event that attracts riders of all levels. " +
                 "Participants race through various routes, exploring Pretoria’s landscapes while promoting fitness and outdoor activity.");
 
-            var event8 = new EventDetails(new DateTime(2024, 11, 20), "Discovery Triathlon World Cup Pretoria", "8 hours", "Sports and Recreation", "TBC",
+            var event8 = new EventDetails(new DateTime(2024, 11, 20), "Discovery Triathlon World Cup Pretoria", "8am - 5pm", "Sports and Recreation", "TBC",
                 "A high-level international triathlon event featuring elite athletes competing in swimming, cycling, and running. " +
                 "The Discovery Triathlon World Cup Pretoria offers an exciting day of endurance sports and global competition.");
 
-            var event9 = new EventDetails(new DateTime(2024, 11, 01), "Two Oceans Marathon", "12 hours", "Sports and Recreation", "TBC",
+            var event9 = new EventDetails(new DateTime(2024, 11, 01), "Two Oceans Marathon", "3am - 4pm", "Sports and Recreation", "TBC",
                 "One of South Africa’s most prestigious marathons, the Two Oceans Marathon takes participants through a challenging course, " +
                 "offering stunning coastal views. Known for its scenic routes, it’s a test of endurance and determination.");
 
-            var event10 = new EventDetails(new DateTime(2024, 11, 05), "Gauteng Carnival", "4 hours", "Arts and Culture", "TBC",
+            var event10 = new EventDetails(new DateTime(2024, 11, 05), "Gauteng Carnival", "10am - 8pm", "Arts and Culture", "TBC",
                 "A colorful and lively carnival showcasing the rich cultural heritage of Gauteng. " +
                 "The event features parades, traditional dances, music, and vibrant costumes, celebrating diversity and community spirit.");
 
-            var event11 = new EventDetails(new DateTime(2024, 11, 22), "Mokete Wa Tshwane", "3 hours", "Arts and Culture", "Freedom Park",
+            var event11 = new EventDetails(new DateTime(2024, 11, 22), "Mokete Wa Tshwane", "11am - 5pm", "Arts and Culture", "Freedom Park",
                 "An annual cultural festival celebrating the heritage and traditions of the people of Tshwane. " +
                 "Mokete Wa Tshwane is a day of music, dance, and storytelling, promoting unity and cultural pride in the local community.");
 
-            var event12 = new EventDetails(new DateTime(2024, 11, 07), "UNISA Graduation Ceremonies", "2 hours", "Educational and Job Creation", "University of Pretoria Campus",
+            var event12 = new EventDetails(new DateTime(2024, 11, 07), "UNISA Graduation Ceremonies", "8am - 5pm", "Educational and Job Creation", "University of Pretoria Campus",
                 "Celebrate the achievements of UNISA’s graduates at this prestigious ceremony. " +
                 "The event honors students who have completed their academic journey and marks the beginning of their professional careers.");
 
-            var event13 = new EventDetails(new DateTime(2024, 10, 30), "State of the Nation Address (SONA)", "4 hours", "Other", "Union Buildings",
+            var event13 = new EventDetails(new DateTime(2024, 10, 30), "State of the Nation Address (SONA)", "6pm - ??", "Other", "Union Buildings",
                 "The State of the Nation Address is a key political event where the President of South Africa delivers a speech outlining the government's plans and " +
                 "priorities for the coming year. A significant event in the country’s political calendar.");
 
-            var event14 = new EventDetails(new DateTime(2024, 10, 20), "A Re Yeng Half Marathon", "4 hours", "Sports and Recreation", "Pretoria",
+            var event14 = new EventDetails(new DateTime(2024, 10, 20), "A Re Yeng Half Marathon", "5am - 12pm", "Sports and Recreation", "Pretoria",
                 "A half marathon promoting fitness and a healthy lifestyle among the residents of Pretoria. " +
                 "The A Re Yeng Half Marathon takes participants through a scenic route across the city, encouraging community participation and physical wellness.");
 
-            var event15 = new EventDetails(new DateTime(2024, 11, 13), "Jacaranda FM's Spring Walk", "2 hours", "Sports and Recreation", "University of Pretoria Campus",
+            var event15 = new EventDetails(new DateTime(2024, 11, 13), "Jacaranda FM's Spring Walk", "10am - 2pm", "Sports and Recreation", "University of Pretoria Campus",
                 "Jacaranda FM’s Spring Walk is a fun, family-friendly event celebrating the arrival of spring. " +
                 "Participants can enjoy a relaxed walk through the beautiful University of Pretoria campus while taking in the stunning jacaranda blooms.");
 
-            var event16 = new EventDetails(new DateTime(2024, 10, 05), "Freedom Day Celebrations", "5 hours", "Public Holiday and Commemorations", "Pretoria North City Hall",
+            var event16 = new EventDetails(new DateTime(2024, 10, 05), "Freedom Day Celebrations", "9am - 5pm", "Public Holiday and Commemorations", "Pretoria North City Hall",
                 "Join the nation in celebrating Freedom Day, commemorating South Africa’s first democratic elections in 1994. " +
                 "The event features speeches, cultural performances, and a reflection on the country’s journey to freedom.");
 
-            var event17 = new EventDetails(new DateTime(2024, 10, 01), "Jacaranda Festival", "5 hours", "Festival", "University of Pretoria Campus",
+            var event17 = new EventDetails(new DateTime(2024, 10, 01), "Jacaranda Festival", "11am - 8pm", "Festival", "University of Pretoria Campus",
                 "A celebration of Pretoria’s famous jacaranda trees in full bloom, " +
                 "the Jacaranda Festival brings together local vendors, musicians, and artists for a day of family fun. Enjoy live music, food stalls, " +
                 "and activities under the iconic purple trees.");
