@@ -40,14 +40,16 @@ namespace MunicipalityApp
             categoryPicker.DataSource = eventCategoriesSet.ToList();
             categoryPicker.SelectedIndex = -1;  // Set no selection
 
+            searchBtn.Click -= searchBtn_Click;
             // Bind search button click event
             searchBtn.Click += searchBtn_Click;
 
             // Bind clear button click event
             clearBtn.Click += clearBtn_Click;  // Add this line to bind the clear button event
 
+
             // Bind recommendations button click event
-            recommendBtn.Click += recommendBtn_Click;
+           // recommendBtn.Click += recommendBtn_Click;
 
             // Display events in the ListView
             DisplayEvents();
@@ -62,7 +64,7 @@ namespace MunicipalityApp
         private void AddSampleEvents()
         {
             // Sample event details
-            var event1 = new EventDetails(new DateTime(2025, 01, 10), "Origins Centre", "9am - 2pm", "Educational and and Job Creation ", "Origins Centre Museum",
+            var event1 = new EventDetails(new DateTime(2025, 01, 10), "Origins Centre", "9am - 2pm", "Educational and Job Creation ", "Origins Centre Museum",
             "The Origins Centre boasts an extensive collection of rock art affording visitors the opportunity to view the earliest images made by humans, found in South Africa. " +
             "These include ancient tools, artefacts of spiritual significance to early humans and examples of the region’s striking rock art.");
 
@@ -119,7 +121,7 @@ namespace MunicipalityApp
                 "Jacaranda FM’s Spring Walk is a fun, family-friendly event celebrating the arrival of spring. " +
                 "Participants can enjoy a relaxed walk through the beautiful University of Pretoria campus while taking in the stunning jacaranda blooms.");
 
-            var event16 = new EventDetails(new DateTime(2024, 12, 12), "Black Death Festival", "9am - 9pm", "Festival, Sports and Recreation", "Flavius Mareka Sports Complex",
+            var event16 = new EventDetails(new DateTime(2024, 12, 12), "Black Death Festival", "9am - 9pm", "Sports and Recreation", "Flavius Mareka Sports Complex",
             "The Black Death Festival is a sports festival that will be hosting a variety of sports tournaments (u/18s) such as the Netball Championship, " +
             "Rugby Championship and the Soccer Championship.");
 
@@ -518,61 +520,7 @@ namespace MunicipalityApp
             }
         
     }
-//--------------------------------------------------------------------------------------------------------//
 
-        /// <summary>
-        /// button to show user the recommendations
-        /// </summary>
-        private void recommendBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Get the selected category from the category picker
-                string selectedCategory = categoryPicker.SelectedItem?.ToString();
-
-                // Check if a category is selected
-                if (string.IsNullOrEmpty(selectedCategory))
-                {
-                    // Prompt the user to select a category
-                    MessageBox.Show("Please select a category before getting recommendations.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Exit if no category is selected
-                }
-
-                // Get recommended events based on the selected category
-                List<EventDetails> recommendedEvents = GetRecommendedEvents(selectedCategory);
-
-                // Clear existing rows in the DataGridView to prepare for new data
-                recomdataGridView.Rows.Clear();
-
-                // Display each recommended event in the DataGridView
-                foreach (var ev in recommendedEvents)
-                {
-                    // Ensure ev has valid properties before adding
-                    if (ev != null) // Check if ev is not null
-                    {
-                        // Add a new row with event details to the DataGridView
-                        recomdataGridView.Rows.Add(
-                            ev.Date.ToShortDateString(), // Event date
-                            ev.EventName,                // Event name
-                            ev.Duration,                 // Event duration
-                            ev.Category,                 // Event category
-                            ev.Location                  // Event location
-                        );
-                    }
-                }
-
-                // Optionally log the number of recommended events displayed
-                Debug.WriteLine($"Number of recommended events displayed: {recommendedEvents.Count}");
-            }
-            catch (Exception ex)
-            {
-                // Log the exception details for debugging
-                Debug.WriteLine($"An error occurred while getting recommendations: {ex.Message}");
-
-                // Inform the user about the error
-                MessageBox.Show($"An error occurred while getting recommendations: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
@@ -580,8 +528,7 @@ namespace MunicipalityApp
         /// </summary>
         private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Enable or disable the recommendations button based on category selection
-            recommendBtn.Enabled = categoryPicker.SelectedIndex != -1;
+           
         }
 //--------------------------------------------------------------------------------------------------------//
 

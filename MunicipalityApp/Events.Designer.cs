@@ -40,7 +40,6 @@
             this.searchbyCategorylbl = new System.Windows.Forms.Label();
             this.searchBtn = new System.Windows.Forms.Button();
             this.clearBtn = new System.Windows.Forms.Button();
-            this.recommendBtn = new System.Windows.Forms.Button();
             this.recomdataGridView = new System.Windows.Forms.DataGridView();
             this.recDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.recEvent = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -175,19 +174,6 @@
             this.clearBtn.UseVisualStyleBackColor = false;
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
-            // recommendBtn
-            // 
-            this.recommendBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.recommendBtn.BackColor = System.Drawing.Color.LimeGreen;
-            this.recommendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recommendBtn.Location = new System.Drawing.Point(562, 590);
-            this.recommendBtn.Name = "recommendBtn";
-            this.recommendBtn.Size = new System.Drawing.Size(174, 42);
-            this.recommendBtn.TabIndex = 25;
-            this.recommendBtn.Text = "Recommendations";
-            this.recommendBtn.UseVisualStyleBackColor = false;
-            this.recommendBtn.Click += new System.EventHandler(this.recommendBtn_Click);
-            // 
             // recomdataGridView
             // 
             this.recomdataGridView.AllowUserToOrderColumns = true;
@@ -279,7 +265,6 @@
             this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
             this.ClientSize = new System.Drawing.Size(1303, 869);
             this.Controls.Add(this.recomdataGridView);
-            this.Controls.Add(this.recommendBtn);
             this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.datePicker);
             this.Controls.Add(this.searchBtn);
@@ -306,7 +291,6 @@
         private System.Windows.Forms.Label searchbyCategorylbl;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button clearBtn;
-        private System.Windows.Forms.Button recommendBtn;
         private System.Windows.Forms.ColumnHeader Date;
         private System.Windows.Forms.ColumnHeader Duration;
         private System.Windows.Forms.ColumnHeader Category;
