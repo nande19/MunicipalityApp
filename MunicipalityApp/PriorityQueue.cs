@@ -8,15 +8,24 @@ namespace MunicipalityApp
 {
     public class PriorityQueue<T>
     {
+        // List to store elements with their priority
         private List<(T Item, DateTime Priority)> elements = new List<(T, DateTime)>();
+//--------------------------------------------------------------------------------------------------------//
 
+        /// <summary>
+        /// 
+        /// </summary>
         // Enqueue an item with a priority
         public void Enqueue(T item, DateTime priority)
         {
             elements.Add((item, priority));
         }
 
-        // Dequeue the item with the highest priority (earliest DateTime)
+        //--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// Adds an item to the priority queue with the specified priority (DateTime).
+        /// </summary>
         public T Dequeue()
         {
             if (elements.Count == 0)
@@ -38,10 +47,15 @@ namespace MunicipalityApp
             return item;
         }
 
-        // Check if the queue is empty
+//--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// Check if the queue is empty
+        /// </summary>
         public bool IsEmpty()
         {
             return elements.Count == 0;
         }
     }
-}
+}      
+//---------------------------------------- END OF FILE -------------------------------------------------------//

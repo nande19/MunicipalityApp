@@ -52,9 +52,9 @@
             this.eventsBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.eventsBtn.BackColor = System.Drawing.Color.Olive;
             this.eventsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eventsBtn.Location = new System.Drawing.Point(345, 125);
+            this.eventsBtn.Location = new System.Drawing.Point(345, 108);
             this.eventsBtn.Name = "eventsBtn";
-            this.eventsBtn.Size = new System.Drawing.Size(161, 51);
+            this.eventsBtn.Size = new System.Drawing.Size(161, 68);
             this.eventsBtn.TabIndex = 1;
             this.eventsBtn.Text = "Local Events and Announcements";
             this.eventsBtn.UseVisualStyleBackColor = false;
