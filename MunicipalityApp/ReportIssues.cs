@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MunicipalityApp
@@ -7,13 +8,13 @@ namespace MunicipalityApp
     public partial class ReportIssues : Form
     {
         // List to store the reported issues
-        private List<IssueDetails> issueList = new List<IssueDetails>();
+        private List<IssueDetails> issueList;
 
         // List to store attached files
         private List<string> attachments = new List<string>();
 
         private Start startForm;  // Reference to the Start form
-
+        private ViewingIssues viewForm;
 
         //--------------------------------------------------------------------------------------------------------//
         /// <summary>
@@ -24,8 +25,12 @@ namespace MunicipalityApp
         {
             InitializeComponent();
             this.startForm = startForm;  // Save the Start form reference
+            this.issueList = startForm.issueList; // Use the shared issueList from the Start form
+
         }
-//--------------------------------------------------------------------------------------------------------//
+
+
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// Back button to return to the main form
@@ -33,12 +38,20 @@ namespace MunicipalityApp
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            // Check if startForm is not null before attempting to show it
-            if (startForm != null)
+            try
             {
-                startForm.Show();  // Show the Start form when the back button is clicked
+                // Check if startForm is not null before attempting to show it
+                if (startForm != null)
+                {
+                    startForm.Show();  // Show the Start form when the back button is clicked
+                }
+                this.Close();  // Close the form
             }
-            this.Close();  // Close the ReportIssues form
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while navigating back: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         //--------------------------------------------------------------------------------------------------------//
 
@@ -47,81 +60,79 @@ namespace MunicipalityApp
         /// </summary>
         private void attachBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            try
             {
-                Multiselect = true,
-                Filter = "Images and Documents|*.jpg;*.jpeg;*.png;*.pdf;*.docx"
-            };
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                foreach (string file in openFileDialog.FileNames)
+                OpenFileDialog openDialog = new OpenFileDialog
                 {
-                    attachments.Add(file);
-                }
+                    Filter = "Image files | *.bmp;*.jpg;*.png",
+                    FilterIndex = 1,
+                    Multiselect = false // Allow only one file selection
+                };
 
-                MessageBox.Show("Files have been successfully selected.", "Files Attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (openDialog.ShowDialog() == DialogResult.OK) // Correct comparison
+                {
+                    // Add the file path to the attachments list
+                    attachments.Add(openDialog.FileName);
+
+                    // Display the attached image in a PictureBox
+                    // Ensure you have a PictureBox control named 'imagePicture'
+                    imagePicture.Image = ResizeImage(Image.FromFile(openDialog.FileName), new Size(280, 95)); // Resize and set the image
+
+                    MessageBox.Show("File has been successfully selected.", "File Attached", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateProgressBar(); // Update progress bar after attachment
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while attaching the file: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-//--------------------------------------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// Save button event handler
         /// </summary>
-       
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            string location = locationTxt.Text;
-            string category = categoryBox.SelectedItem?.ToString();
-            string description = descriptionTxt.Text;
-
-            if (string.IsNullOrEmpty(location) || string.IsNullOrEmpty(category) || string.IsNullOrEmpty(description))
+            try
             {
-                MessageBox.Show("Please fill in all required fields: Location, Category, and Description.",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                string location = locationTxt.Text;
+                string category = categoryBox.SelectedItem?.ToString();
+                string description = descriptionTxt.Text;
 
-            // Check if all attachments exist
-            foreach (var attachment in attachments)
-            {
-                if (!System.IO.File.Exists(attachment))
+                if (string.IsNullOrEmpty(location) || string.IsNullOrEmpty(category) || string.IsNullOrEmpty(description))
                 {
-                    MessageBox.Show($"File does not exist: {attachment}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;  // Exit the method if any file is not found
+                    MessageBox.Show("Please fill in all required fields: Location, Category, and Description.",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+
+                if (attachments.Count == 0)
+                {
+                    MessageBox.Show("Adding an image is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;  // Exit the method if no attachment is added
+                }
+
+                IssueDetails newIssue = new IssueDetails(location, category, description, attachments);
+                issueList.Add(newIssue);  // Add the new issue to the shared issueList
+
+                progressBar.Value = 100;
+
+                MessageBox.Show("Your issue has been successfully reported!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ClearForm();
+
+                ViewingIssues viewingIssuesForm = new ViewingIssues(issueList);
+                this.Hide();
+                viewingIssuesForm.Show();
             }
-
-            // For debugging: Print out attachment paths
-            MessageBox.Show("Attachments:\n" + string.Join("\n", attachments), "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            progressBar.Value = 0;
-
-            progressBar.Value += 30;
-
-            if (attachments.Count > 0)
+            catch (Exception ex)
             {
-                progressBar.Value += 30;
+                MessageBox.Show($"An error occurred while saving the issue: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            IssueDetails newIssue = new IssueDetails(location, category, description, attachments);
-            issueList.Add(newIssue);
-
-            progressBar.Value = 100;
-
-            MessageBox.Show("Your issue has been successfully reported!",
-                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            ClearForm();
-
-            ViewingIssues viewingIssuesForm = new ViewingIssues(issueList);
-
-            this.Hide();
-
-            viewingIssuesForm.FormClosed += (s, args) => this.Close();
-
-            viewingIssuesForm.Show();
         }
+
 
         //--------------------------------------------------------------------------------------------------------//
 
@@ -133,21 +144,118 @@ namespace MunicipalityApp
             locationTxt.Clear();
             categoryBox.SelectedIndex = -1;
             descriptionTxt.Clear();
-            attachments.Clear();
+            imagePicture.Image = null; // Clear the PictureBox
+
         }
 
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// Event handler for when the BindingNavigator is refreshed.
+        /// Update the progress bar based on the input fields and attachments.
+        /// </summary>
+        private void UpdateProgressBar()
+        {
+            progressBar.Value = 0; // Reset progress bar
+
+            // Increment the progress bar based on filled fields
+            int filledFieldsCount = 0;
+
+            if (!string.IsNullOrEmpty(locationTxt.Text))
+            {
+                filledFieldsCount++;
+            }
+            if (categoryBox.SelectedIndex >= 0)
+            {
+                filledFieldsCount++;
+            }
+            if (!string.IsNullOrEmpty(descriptionTxt.Text))
+            {
+                filledFieldsCount++;
+            }
+            if (attachments.Count > 0)
+            {
+                filledFieldsCount++;
+            }
+
+            // Calculate the progress percentage
+            progressBar.Value = (filledFieldsCount * 100) / 4; // Divide by 4 for four potential fields
+        }
+        //--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// Resizes the given image to fit within the specified size.
         /// </summary>
 
-        private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
+        private Image ResizeImage(Image image, Size size)
+        {
+            Bitmap resizedImage = new Bitmap(size.Width, size.Height);
+            using (Graphics g = Graphics.FromImage(resizedImage))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(image, 0, 0, size.Width, size.Height);
+            }
+            return resizedImage;
+        }
+//--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// progress bar updates
+        /// </summary>
+
+        private void locationTxt_TextChanged(object sender, EventArgs e)
+        {
+            UpdateProgressBar(); // Update the progress bar when the location text changes
+
+        }
+
+        private void categoryBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateProgressBar(); // Update the progress bar when the category selection changes
+
+        }
+
+        private void descriptionTxt_TextChanged(object sender, EventArgs e)
+        {
+            UpdateProgressBar(); // Update the progress bar when the description text changes
+
+        }
+
+        private void imagePicture_Click(object sender, EventArgs e)
+        {
+            UpdateProgressBar(); // Update the progress bar when the description text changes
+        }
+
+        private void progressBar_Click(object sender, EventArgs e)
         {
 
         }
+//--------------------------------------------------------------------------------------------------------//
 
-      
+        /// <summary>
+        /// viewing issues button
+        /// </summary>
+        private void viewBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Initialize the ViewingIssues form if it is null
+                if (viewForm == null || viewForm.IsDisposed)
+                {
+                    viewForm = new ViewingIssues(issueList); // Pass the issue list to the ViewingIssues form
+                }
+
+                // Show the ViewingIssues form
+                viewForm.Show();
+                this.Hide();  // Hide the current form to display the ViewingIssues form
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while navigating to the Viewing Issues page: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
+}
+
+
         //---------------------------------------- END OF FILE -------------------------------------------------------//

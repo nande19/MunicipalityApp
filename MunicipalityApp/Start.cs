@@ -12,11 +12,16 @@ namespace MunicipalityApp
 {
     public partial class Start : Form
     {
+        // List to store issues (accessible across forms)
+        public List<IssueDetails> issueList = new List<IssueDetails>();
+
         public Start()
         {
             InitializeComponent();
         }
-//--------------------------------------------------------------------------------------------------------//
+
+      
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// report issue button functionality
@@ -41,7 +46,7 @@ namespace MunicipalityApp
         private void eventsBtn_Click(object sender, EventArgs e)
         {
             // Create an instance of ReportIssues form
-            Events Announcements = new Events();
+            Events Announcements = new Events(this);
 
             // Set the Start form to hide when the ReportIssues form is opened
             this.Hide();  // Hide the Start form
@@ -56,17 +61,19 @@ namespace MunicipalityApp
         /// to be added
         /// </summary>
         private void serviceRequestBtn_Click(object sender, EventArgs e)
+            {
+                // Display a message box to inform the user
+                MessageBox.Show("Don't be impatient, coming soon!", "Service Request", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            //--------------------------------------------------------------------------------------------------------//
+
+            /// <summary>
+            /// Start Window
+            /// </summary>
+            private void Start_Load(object sender, EventArgs e)
         {
-
-        }
-//--------------------------------------------------------------------------------------------------------//
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void Start_Load(object sender, EventArgs e)
-        {
-
+            
         }
     }
 }

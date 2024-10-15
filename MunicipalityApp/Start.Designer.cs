@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Start));
             this.reportIssuesBtn = new System.Windows.Forms.Button();
             this.eventsBtn = new System.Windows.Forms.Button();
             this.serviceRequestBtn = new System.Windows.Forms.Button();
@@ -37,6 +36,7 @@
             // 
             // reportIssuesBtn
             // 
+            this.reportIssuesBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.reportIssuesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.reportIssuesBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportIssuesBtn.Location = new System.Drawing.Point(345, 199);
@@ -49,11 +49,12 @@
             // 
             // eventsBtn
             // 
+            this.eventsBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.eventsBtn.BackColor = System.Drawing.Color.Olive;
             this.eventsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eventsBtn.Location = new System.Drawing.Point(345, 125);
+            this.eventsBtn.Location = new System.Drawing.Point(345, 108);
             this.eventsBtn.Name = "eventsBtn";
-            this.eventsBtn.Size = new System.Drawing.Size(161, 51);
+            this.eventsBtn.Size = new System.Drawing.Size(161, 68);
             this.eventsBtn.TabIndex = 1;
             this.eventsBtn.Text = "Local Events and Announcements";
             this.eventsBtn.UseVisualStyleBackColor = false;
@@ -61,6 +62,7 @@
             // 
             // serviceRequestBtn
             // 
+            this.serviceRequestBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.serviceRequestBtn.BackColor = System.Drawing.Color.Teal;
             this.serviceRequestBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serviceRequestBtn.Location = new System.Drawing.Point(345, 278);
@@ -73,7 +75,9 @@
             // 
             // municipalityLbl
             // 
+            this.municipalityLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.municipalityLbl.AutoSize = true;
+            this.municipalityLbl.BackColor = System.Drawing.Color.Transparent;
             this.municipalityLbl.Font = new System.Drawing.Font("Modern No. 20", 16.2F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.municipalityLbl.Location = new System.Drawing.Point(262, 22);
@@ -87,7 +91,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
             this.ClientSize = new System.Drawing.Size(882, 450);
             this.Controls.Add(this.municipalityLbl);
             this.Controls.Add(this.serviceRequestBtn);
