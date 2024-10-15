@@ -49,12 +49,12 @@ namespace MunicipalityApp
 
 
             // Bind recommendations button click event
-           // recommendBtn.Click += recommendBtn_Click;
+            // recommendBtn.Click += recommendBtn_Click;
 
             // Display events in the ListView
             DisplayEvents();
         }
-       
+
 
         //--------------------------------------------------------------------------------------------------------//
 
@@ -286,8 +286,8 @@ namespace MunicipalityApp
                 // Optionally inform the user about the error
                 MessageBox.Show("An error occurred while displaying recommended events.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
-    }
+
+        }
 
 
         //--------------------------------------------------------------------------------------------------------//
@@ -346,12 +346,12 @@ namespace MunicipalityApp
             }
             catch (Exception ex)
             {
-               MessageBox.Show($"An error occurred while navigating back: {ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while navigating back: {ex.Message}",
+                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-//--------------------------------------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// mouse click to view event details 
@@ -390,10 +390,10 @@ namespace MunicipalityApp
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    
 
 
-//--------------------------------------------------------------------------------------------------------//
+
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// allows the users to filter through data
@@ -492,12 +492,12 @@ namespace MunicipalityApp
             }
         }
 
-            //--------------------------------------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------------//
 
-            /// <summary>
-            /// clears the filtering
-            /// </summary>
-            private void clearBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// clears the filtering
+        /// </summary>
+        private void clearBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -518,8 +518,8 @@ namespace MunicipalityApp
                 // Inform the user about the error
                 MessageBox.Show($"An error occurred while clearing filters: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
-    }
+
+        }
 
         //--------------------------------------------------------------------------------------------------------//
 
@@ -528,16 +528,24 @@ namespace MunicipalityApp
         /// </summary>
         private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
-//--------------------------------------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// 
+        /// /// Handles the date change event to prevent the user from selecting a past date.
         /// </summary>
         private void datePicker_ValueChanged(object sender, EventArgs e)
         {
+            // Check if the selected date is earlier than the current date
+            if (datePicker.Value.Date < DateTime.Now.Date)
+            {
+                // Display the #FOMO message
+                MessageBox.Show("Oops, you missed out! #FOMO", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                // Reset the DateTimePicker to today's date
+                datePicker.Value = DateTime.Now.Date;
+            }
         }
     }
 }
