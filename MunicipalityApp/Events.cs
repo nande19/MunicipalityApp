@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -192,9 +193,12 @@ namespace MunicipalityApp
 
         public List<EventDetails> GetRecommendedEvents(string searchCategory)
         {
+            List<EventDetails> recommendedEvents = new List<EventDetails>();
+
+            // Determine related categories based on the search category
             List<string> relatedCategories = new List<string>();
 
-            // Determine related categories based on the search
+            // Populate related categories based on the selected search category
             if (searchCategory.Contains("Music"))
             {
                 relatedCategories.Add("Educational and Job Creation");
@@ -216,7 +220,12 @@ namespace MunicipalityApp
             }
 
             // Find events with related categories
-            return eventQueue.Where(e => relatedCategories.Contains(e.Category)).ToList();
+            recommendedEvents = eventsDictionary
+                .Where(eventEntry => relatedCategories.Contains(eventEntry.Value.Category))
+                .Select(eventEntry => eventEntry.Value)
+                .ToList();
+
+            return recommendedEvents;
         }
 
 
@@ -228,44 +237,43 @@ namespace MunicipalityApp
         /// </summary>
         private void DisplayRecommendedEvents(string searchCategory)
         {
+            // Clear existing rows
+            recomdataGridView.Rows.Clear();
+
+            // Get recommended events based on user search
+            List<EventDetails> recommendedEvents = GetRecommendedEvents(searchCategory);
+
+            // Log the number of recommended events
+            Debug.WriteLine($"Number of recommended events: {recommendedEvents.Count}");
+
+            // Display each event in the DataGridView
+            foreach (var ev in recommendedEvents)
             {
-                // Clear existing rows in the recommendations DataGridView
-                recomdataGridView.Rows.Clear();
-
-                // Get recommended events based on the selected category
-                var recommendedEvents = GetRecommendedEvents(searchCategory);
-
-                // Add recommended events to the DataGridView
-                if (recommendedEvents != null && recommendedEvents.Count > 0)
+                // Ensure ev has valid properties before adding
+                if (ev != null) // Check if ev is not null
                 {
-                    foreach (var eventDetail in recommendedEvents)
-                    {
-                        // Add a new row to the DataGridView for each recommended event
-                        recomdataGridView.Rows.Add(
-                            eventDetail.Date.ToShortDateString(),
-                            eventDetail.EventName,
-                            eventDetail.Duration,
-                            eventDetail.Category,
-                            eventDetail.Location,
-                            eventDetail.Description
-                        ); // Ensure 'eventDetail.Description' is defined
-                    }
-                }
-                else
-                {
-                    // Optionally, add a message indicating no recommendations found
-                    //MessageBox.Show("No recommendations found for the selected category.", "Recommendations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    recomdataGridView.Rows.Add(
+                        ev.Date.ToShortDateString(),
+                        ev.EventName,
+                        ev.Duration,
+                        ev.Category,
+                        ev.Location
+                    );
                 }
             }
+
+            // Refresh the DataGridView to ensure it displays the new rows
+                recomdataGridView.Refresh();
+
         }
 
 
-            //--------------------------------------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------------//
 
-            /// <summary>
-            /// Display events from the SortedDictionary in the ListView.
-            /// </summary>
-            private void DisplayEvents()
+        /// <summary>
+        /// Display events from the SortedDictionary in the ListView.
+        /// </summary>
+        private void DisplayEvents()
         {
             // Clear existing items in the ListView
             eventslstview.Items.Clear();
@@ -444,10 +452,41 @@ namespace MunicipalityApp
 
         private void recommendBtn_Click(object sender, EventArgs e)
         {
-            
+            // Get the selected category from the category picker
+            string selectedCategory = categoryPicker.SelectedItem?.ToString();
+
+            // Check if a category is selected
+            if (string.IsNullOrEmpty(selectedCategory))
+            {
+                MessageBox.Show("Please select a category before getting recommendations.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Exit if no category is selected
+            }
+
+            // Get recommended events based on the selected category
+            List<EventDetails> recommendedEvents = GetRecommendedEvents(selectedCategory);
+
+            // Clear existing rows in the DataGridView
+            recomdataGridView.Rows.Clear();
+
+            // Display each recommended event in the DataGridView
+            foreach (var ev in recommendedEvents)
+            {
+                // Ensure ev has valid properties before adding
+                if (ev != null) // Check if ev is not null
+                {
+                    recomdataGridView.Rows.Add(
+                        ev.Date.ToShortDateString(),
+                        ev.EventName,
+                        ev.Duration,
+                        ev.Category,
+                        ev.Location
+                    );
+                }
+            }
+
+            // Optionally log the number of recommended events
+            Debug.WriteLine($"Number of recommended events displayed: {recommendedEvents.Count}");
         }
-
-
 
         private void categoryPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
