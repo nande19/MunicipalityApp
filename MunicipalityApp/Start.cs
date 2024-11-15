@@ -62,16 +62,22 @@ namespace MunicipalityApp
         /// </summary>
         private void serviceRequestBtn_Click(object sender, EventArgs e)
             {
-                // Display a message box to inform the user
-                MessageBox.Show("Don't be impatient, coming soon!", "Service Request", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            // Create an instance of ReportIssues form
+            ServiceRequests servReq = new ServiceRequests();
 
-            //--------------------------------------------------------------------------------------------------------//
+            // Set the Start form to hide when the ReportIssues form is opened
+            this.Hide();  // Hide the Start form
 
-            /// <summary>
-            /// Start Window
-            /// </summary>
-            private void Start_Load(object sender, EventArgs e)
+            // Show the ReportIssues form
+            servReq.ShowDialog(); // Show the ReportIssues form as a modal dialog
+        }
+
+        //--------------------------------------------------------------------------------------------------------//
+
+        /// <summary>
+        /// Start Window
+        /// </summary>
+        private void Start_Load(object sender, EventArgs e)
         {
             
         }
