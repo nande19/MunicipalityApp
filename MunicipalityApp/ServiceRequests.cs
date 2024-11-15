@@ -16,6 +16,13 @@ namespace MunicipalityApp
         {
             InitializeComponent();
         }
+
+     
+
+        private void searchTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
         //---------------------------------------- END OF FILE -------------------------------------------------------//

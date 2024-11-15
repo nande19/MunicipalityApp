@@ -48,6 +48,7 @@
             this.recLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryPicker = new System.Windows.Forms.ComboBox();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
+            this.Recommendations = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.recomdataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -185,11 +186,11 @@
             this.recDuration,
             this.recCategory,
             this.recLocation});
-            this.recomdataGridView.Location = new System.Drawing.Point(62, 647);
+            this.recomdataGridView.Location = new System.Drawing.Point(128, 640);
             this.recomdataGridView.Name = "recomdataGridView";
             this.recomdataGridView.RowHeadersWidth = 51;
             this.recomdataGridView.RowTemplate.Height = 24;
-            this.recomdataGridView.Size = new System.Drawing.Size(1175, 188);
+            this.recomdataGridView.Size = new System.Drawing.Size(1009, 98);
             this.recomdataGridView.TabIndex = 26;
             // 
             // recDate
@@ -257,6 +258,20 @@
             this.datePicker.TabIndex = 23;
             this.datePicker.ValueChanged += new System.EventHandler(this.datePicker_ValueChanged);
             // 
+            // Recommendations
+            // 
+            this.Recommendations.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Recommendations.AutoSize = true;
+            this.Recommendations.BackColor = System.Drawing.Color.Transparent;
+            this.Recommendations.Font = new System.Drawing.Font("Modern No. 20", 12F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Recommendations.ForeColor = System.Drawing.Color.White;
+            this.Recommendations.Location = new System.Drawing.Point(425, 604);
+            this.Recommendations.Name = "Recommendations";
+            this.Recommendations.Size = new System.Drawing.Size(370, 22);
+            this.Recommendations.TabIndex = 27;
+            this.Recommendations.Text = "Upcoming Events and Announcemments";
+            // 
             // Events
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -264,6 +279,7 @@
             this.BackColor = System.Drawing.Color.Olive;
             this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
             this.ClientSize = new System.Drawing.Size(1303, 869);
+            this.Controls.Add(this.Recommendations);
             this.Controls.Add(this.recomdataGridView);
             this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.datePicker);
@@ -304,5 +320,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn recLocation;
         private System.Windows.Forms.ComboBox categoryPicker;
         private System.Windows.Forms.DateTimePicker datePicker;
+        private System.Windows.Forms.Label Recommendations;
     }
 }
