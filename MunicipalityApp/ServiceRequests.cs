@@ -20,6 +20,11 @@ namespace MunicipalityApp
         {
             statusLst.Items.Clear(); // Clear previous items
 
+
+            // Define the possible statuses
+            string[] statuses = { "Processing", "Pending", "Complete" };
+            Random random = new Random();
+
             // Loop through each issue and add its details to the ListView
             foreach (var issue in issueList)
             {
@@ -29,12 +34,16 @@ namespace MunicipalityApp
                 item.SubItems.Add(issue.Category);
                 // Add the Description as a subitem
                 item.SubItems.Add(issue.Description);
+                // Add a random status as a subitem
+                string randomStatus = statuses[random.Next(statuses.Length)];
+                item.SubItems.Add(randomStatus); // Request Status column
 
                 // Add the item to the ListView
                 statusLst.Items.Add(item);
             }
         }
 
+        // Back button click event
         private void backBtn_Click(object sender, EventArgs e)
         {
             try
