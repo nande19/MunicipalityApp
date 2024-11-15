@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MunicipalityApp
 {
-
     public partial class ServiceRequests : Form
     {
-
         private List<IssueDetails> issueList;
 
-        public ServiceRequests(List<IssueDetails> issues )
+        public ServiceRequests(List<IssueDetails> issues)
         {
             InitializeComponent();
             issueList = issues;
@@ -25,11 +18,18 @@ namespace MunicipalityApp
 
         private void LoadIssueIds()
         {
-            statusLst.Items.Clear();
+            statusLst.Items.Clear(); // Clear previous items
 
+            // Loop through each issue and add its details to the ListView
             foreach (var issue in issueList)
             {
-                statusLst.Items.Add(issue.RequestId.ToString());
+                // Create a new ListViewItem with the RequestId as the text
+                ListViewItem item = new ListViewItem(issue.RequestId);
+                // Add the Category as a subitem
+                item.SubItems.Add(issue.Category);
+
+                // Add the item to the ListView
+                statusLst.Items.Add(item);
             }
         }
 
@@ -53,4 +53,3 @@ namespace MunicipalityApp
         }
     }
 }
-        //---------------------------------------- END OF FILE -------------------------------------------------------//
