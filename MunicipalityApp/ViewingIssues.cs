@@ -180,6 +180,25 @@ namespace MunicipalityApp
                 MessageBox.Show($"Error processing the selected issue: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the Start form (or retrieve it if already instantiated)
+            Start startForm = Application.OpenForms.OfType<Start>().FirstOrDefault();
+
+            // Create an instance of the ReportIssues form and pass the Start form reference
+            if (startForm != null)
+            {
+                ReportIssues reportForm = new ReportIssues(startForm); // Pass Start form
+                this.Hide();  // Hide the current ViewingIssues form
+                reportForm.ShowDialog(); // Show the ReportIssues form as a modal dialog
+                this.Show(); // Optionally, show the ViewingIssues form again after ReportIssues is closed
+            }
+            else
+            {
+                MessageBox.Show("Start form not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 //---------------------------------------- END OF FILE -------------------------------------------------------//

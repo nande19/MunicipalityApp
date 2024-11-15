@@ -27,6 +27,8 @@ namespace MunicipalityApp
                 ListViewItem item = new ListViewItem(issue.RequestId);
                 // Add the Category as a subitem
                 item.SubItems.Add(issue.Category);
+                // Add the Description as a subitem
+                item.SubItems.Add(issue.Description);
 
                 // Add the item to the ListView
                 statusLst.Items.Add(item);

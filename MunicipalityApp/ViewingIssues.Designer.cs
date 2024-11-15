@@ -37,6 +37,7 @@
             this.Attachment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.backBtn = new System.Windows.Forms.Button();
             this.attachmentsImageList = new System.Windows.Forms.ImageList(this.components);
+            this.addBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // viewingLbl
@@ -110,6 +111,19 @@
             this.attachmentsImageList.ImageSize = new System.Drawing.Size(16, 16);
             this.attachmentsImageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // addBtn
+            // 
+            this.addBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addBtn.BackColor = System.Drawing.Color.LimeGreen;
+            this.addBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBtn.Location = new System.Drawing.Point(882, 101);
+            this.addBtn.Name = "addBtn";
+            this.addBtn.Size = new System.Drawing.Size(132, 43);
+            this.addBtn.TabIndex = 17;
+            this.addBtn.Text = "Add More";
+            this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            // 
             // ViewingIssues
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -117,6 +131,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
             this.ClientSize = new System.Drawing.Size(1122, 670);
+            this.Controls.Add(this.addBtn);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.viewLstVw);
             this.Controls.Add(this.viewingLbl);
@@ -137,5 +152,6 @@
         private System.Windows.Forms.ColumnHeader Category;
         private System.Windows.Forms.ColumnHeader Description;
         private System.Windows.Forms.ColumnHeader Attachment;
+        private System.Windows.Forms.Button addBtn;
     }
 }
