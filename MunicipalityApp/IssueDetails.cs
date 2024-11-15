@@ -13,6 +13,7 @@ namespace MunicipalityApp
         /// </summary>
     public class IssueDetails
     {
+        public string RequestId { get; set; } // Unique identifier
         public string Location { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
@@ -20,6 +21,7 @@ namespace MunicipalityApp
 
         public IssueDetails(string location, string category, string description, List<string> attachments)
         {
+            RequestId = Guid.NewGuid().ToString(); // Generate a unique ID
             Location = location;
             Category = category;
             Description = description;

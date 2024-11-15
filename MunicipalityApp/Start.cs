@@ -63,7 +63,7 @@ namespace MunicipalityApp
         private void serviceRequestBtn_Click(object sender, EventArgs e)
             {
             // Create an instance of ReportIssues form
-            ServiceRequests servReq = new ServiceRequests();
+            ServiceRequests servReq = new ServiceRequests(issueList);
 
             // Set the Start form to hide when the ReportIssues form is opened
             this.Hide();  // Hide the Start form

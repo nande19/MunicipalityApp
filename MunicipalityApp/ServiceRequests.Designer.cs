@@ -41,6 +41,7 @@
             // 
             // statusLst
             // 
+            this.statusLst.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.statusLst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.requestID,
             this.submittedRequest,
@@ -48,9 +49,9 @@
             this.requestStatus});
             this.statusLst.GridLines = true;
             this.statusLst.HideSelection = false;
-            this.statusLst.Location = new System.Drawing.Point(111, 196);
+            this.statusLst.Location = new System.Drawing.Point(12, 193);
             this.statusLst.Name = "statusLst";
-            this.statusLst.Size = new System.Drawing.Size(909, 338);
+            this.statusLst.Size = new System.Drawing.Size(1098, 338);
             this.statusLst.TabIndex = 0;
             this.statusLst.UseCompatibleStateImageBehavior = false;
             this.statusLst.View = System.Windows.Forms.View.Details;
@@ -77,11 +78,11 @@
             // 
             // searchTxt
             // 
+            this.searchTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.searchTxt.Location = new System.Drawing.Point(353, 133);
             this.searchTxt.Name = "searchTxt";
             this.searchTxt.Size = new System.Drawing.Size(161, 22);
             this.searchTxt.TabIndex = 3;
-            this.searchTxt.TextChanged += new System.EventHandler(this.searchTxt_TextChanged);
             // 
             // searchBtn
             // 
@@ -119,6 +120,7 @@
             this.backBtn.TabIndex = 25;
             this.backBtn.Text = "Back to Main";
             this.backBtn.UseVisualStyleBackColor = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // ServiceRequests
             // 

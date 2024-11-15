@@ -72,7 +72,6 @@
     <Compile Include="ReportIssues.Designer.cs">
       <DependentUpon>ReportIssues.cs</DependentUpon>
     </Compile>
-    <Compile Include="ServiceRequest.cs" />
     <Compile Include="ServiceRequests.cs">
       <SubType>Form</SubType>
     </Compile>
