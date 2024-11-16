@@ -41,7 +41,7 @@ namespace MunicipalityApp
 //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// to be added
+        /// button to access events winwow
         /// </summary>
         private void eventsBtn_Click(object sender, EventArgs e)
         {
@@ -58,7 +58,7 @@ namespace MunicipalityApp
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
-        /// to be added
+        /// button to access the service request window 
         /// </summary>
         private void serviceRequestBtn_Click(object sender, EventArgs e)
             {

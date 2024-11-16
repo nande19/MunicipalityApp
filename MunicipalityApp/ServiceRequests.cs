@@ -7,49 +7,60 @@ namespace MunicipalityApp
 {
     public partial class ServiceRequests : Form
     {
-        private BinarySearchTree<IssueDetails> reportTree; // BST to manage service requests
-        private string[] statuses = { "Processing", "Pending", "Complete" };
-        private Random random = new Random();
+        private BinarySearchTree<IssueDetails> reportTree; // Binary Search Tree to manage service requests
+        private string[] statuses = { "Processing", "Pending", "Complete" }; // Array of possible statuses for issues
+        private Random random = new Random(); // Random object to generate random statuses
+
+        //--------------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Constructor that accepts a list of issues and initializes the form.
+        /// </summary>
         public ServiceRequests(List<IssueDetails> issues)
         {
             InitializeComponent();
-            reportTree = new BinarySearchTree<IssueDetails>();
+            reportTree = new BinarySearchTree<IssueDetails>(); // Initialize the Binary Search Tree
 
-            // Insert issues into the BST
+            // Insert issues into the BST and generate RequestIds
             foreach (var issue in issues)
             {
                 issue.GenerateRequestId(random); // Generate formatted RequestId
-                reportTree.Insert(issue);
+                reportTree.Insert(issue); // Insert issue into the tree
             }
 
-            LoadIssueIds();
+            LoadIssueIds(); // Load and display the issues in the ListView
         }
 
+        //--------------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Loads and displays all the issues into the ListView.
+        /// </summary>
         private void LoadIssueIds()
         {
-            statusLst.Items.Clear(); // Clear previous items
+            statusLst.Items.Clear(); // Clear the ListView before adding new items
 
             // Perform an in-order traversal to fetch issues in sorted order
             List<IssueDetails> sortedIssues = new List<IssueDetails>();
-            reportTree.InOrderTraversal(issue => sortedIssues.Add(issue));
+            reportTree.InOrderTraversal(issue => sortedIssues.Add(issue)); // Get sorted issues using in-order traversal
 
+            // Add each issue to the ListView
             foreach (var issue in sortedIssues)
             {
-                // Create a new ListViewItem with the RequestId as the text
-                ListViewItem item = new ListViewItem(issue.RequestId);
-                // Add the Category as a subitem
-                item.SubItems.Add(issue.Category);
-                // Add the Description as a subitem
-                item.SubItems.Add(issue.Description);
-                // Add a random status as a subitem
+                ListViewItem item = new ListViewItem(issue.RequestId); // Create ListView item with RequestId
+                item.SubItems.Add(issue.Category); // Add the Category as a subitem
+                item.SubItems.Add(issue.Description); // Add the Description as a subitem
+
+                // Generate a random status and add it as a subitem
                 string randomStatus = statuses[random.Next(statuses.Length)];
                 item.SubItems.Add(randomStatus); // Request Status column
 
-                // Add the item to the ListView
-                statusLst.Items.Add(item);
+                statusLst.Items.Add(item); // Add the item to the ListView
             }
         }
 
+        //--------------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Event handler for the back button click event.
+        /// </summary>
         private void backBtn_Click(object sender, EventArgs e)
         {
             try
@@ -57,52 +68,57 @@ namespace MunicipalityApp
                 // Show the Start form and close the current form
                 if (Application.OpenForms.OfType<Start>().Any())
                 {
-                    Application.OpenForms.OfType<Start>().First().Show();
+                    Application.OpenForms.OfType<Start>().First().Show(); // Show the Start form
                 }
 
-                this.Close(); // Close the form
+                this.Close(); // Close the current form
             }
             catch (Exception ex)
             {
-                // Handle errors that occur when trying to close the form
+                // Handle errors when trying to close the form
                 MessageBox.Show($"Error while closing the form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        //--------------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Event handler for the search button click event.
+        /// </summary>
         private void searchBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                string searchId = searchTxt.Text.Trim(); // Input from TextBox
+                string searchId = searchTxt.Text.Trim(); // Get the search ID from the TextBox
 
                 // Validate input
                 if (string.IsNullOrEmpty(searchId))
                 {
                     MessageBox.Show("Please enter a valid Request ID.", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    return; // Exit if no search ID is entered
                 }
 
-                IssueDetails foundIssue = null;
+                IssueDetails foundIssue = null; // Variable to store the found issue
 
-                // Perform BST search
+                // Perform BST search to find the issue by RequestId
                 reportTree.InOrderTraversal(issue =>
                 {
                     if (issue.RequestId.Equals(searchId, StringComparison.OrdinalIgnoreCase))
                     {
-                        foundIssue = issue;
+                        foundIssue = issue; // If the RequestId matches, store the issue
                     }
                 });
 
-                // Display result in ListView
+                // Clear the ListView before showing the search result
                 statusLst.Items.Clear();
 
+                // If the issue is found, display it in the ListView
                 if (foundIssue != null)
                 {
-                    ListViewItem item = new ListViewItem(foundIssue.RequestId);
-                    item.SubItems.Add(foundIssue.Category);
-                    item.SubItems.Add(foundIssue.Description);
-                    item.SubItems.Add(statuses[random.Next(statuses.Length)]); // Random status
-                    statusLst.Items.Add(item);
+                    ListViewItem item = new ListViewItem(foundIssue.RequestId); // Create ListView item with RequestId
+                    item.SubItems.Add(foundIssue.Category); // Add the Category as a subitem
+                    item.SubItems.Add(foundIssue.Description); // Add the Description as a subitem
+                    item.SubItems.Add(statuses[random.Next(statuses.Length)]); // Add a random status
+                    statusLst.Items.Add(item); // Add the item to the ListView
                 }
                 else
                 {
@@ -123,24 +139,26 @@ namespace MunicipalityApp
             }
         }
 
+        //--------------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Event handler for the clear button click event.
+        /// </summary>
         private void clearBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                // Clear the search TextBox
-                searchTxt.Clear();
-
-                // Clear the ListView
-                statusLst.Items.Clear();
+                searchTxt.Clear(); // Clear the search TextBox
+                statusLst.Items.Clear(); // Clear the ListView
 
                 // Optionally, reload all issues from the BST to display them again
                 LoadIssueIds();
             }
             catch (Exception ex)
             {
-                // Handle any errors that occur during the clear process
+                // Handle errors during the clear process
                 MessageBox.Show($"An error occurred while clearing the search: {ex.Message}", "Clear Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
-    }
+}
+//---------------------------------------- END OF FILE -------------------------------------------------------//

@@ -180,7 +180,10 @@ namespace MunicipalityApp
                 MessageBox.Show($"Error processing the selected issue: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //--------------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Event handler for the "Add" button click event. Opens the ReportIssues form to add a new issue.
+        /// </summary>
         private void addBtn_Click(object sender, EventArgs e)
         {
             try
