@@ -52,6 +52,12 @@ namespace MunicipalityApp
                 item.SubItems.Add(issue.Category); // Add the Category as a subitem
                 item.SubItems.Add(issue.Description); // Add the Description as a subitem
 
+                // Check if the status is "COMPLETE", otherwise assign a random status
+                if (!issue.Status.Contains("COMPLETE"))
+                {
+                    issue.Status = statuses[random.Next(statuses.Length)];
+                }
+
                 item.SubItems.Add(issue.Status); // Add the current status of the issue
 
                 // Set the color of the status based on the value
@@ -73,22 +79,33 @@ namespace MunicipalityApp
 
                 statusLst.Items.Add(item); // Add the item to the ListView
             }
-        
         }
-        private void UpdateIssueStatus(string requestId, string newStatus)
+
+        private void UpdateIssueStatus(string requestId)
         {
             // Find the issue by RequestId
-            IssueDetails issueToUpdate = reportTree.Find(requestId); // You may need to implement Find in your BinarySearchTree class
+            IssueDetails issueToUpdate = reportTree.Find(requestId);
             if (issueToUpdate != null)
             {
-                issueToUpdate.Status = newStatus; // Update the status
-                LoadIssueIds(); // Reload the ListView to reflect the new status
+                // Check if the status is already COMPLETE
+                if (issueToUpdate.Status.Contains("COMPLETE"))
+                {
+                    // If it's complete, don't change it
+                    return;
+                }
+
+                // Otherwise, assign a new random status from the statuses array
+                issueToUpdate.Status = statuses[random.Next(statuses.Length)];
+
+                // Reload the ListView to reflect the new status
+                LoadIssueIds();
             }
             else
             {
                 MessageBox.Show("Issue not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         //--------------------------------------------------------------------------------------------------------//
         /// <summary>
