@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,9 +9,9 @@ namespace MunicipalityApp
     public partial class ServiceRequests : Form
     {
         private BinarySearchTree<IssueDetails> reportTree; // Binary Search Tree to manage service requests
-        private string[] statuses = { 
-            "PROCESSING - INVESTIGATION UNDERWAY", 
-            "PENDING - INVESTIGATION NOT STARTED", 
+        private string[] statuses = {
+            "PROCESSING - INVESTIGATION UNDERWAY",
+            "PENDING - INVESTIGATION NOT STARTED",
             "COMPLETE - INVESTIGATION COMPLETED" }; // Array of possible statuses for issues
         private Random random = new Random(); // Random object to generate random statuses
 
@@ -41,71 +42,48 @@ namespace MunicipalityApp
         {
             statusLst.Items.Clear(); // Clear the ListView before adding new items
 
-            // Perform an in-order traversal to fetch issues in sorted order
             List<IssueDetails> sortedIssues = new List<IssueDetails>();
             reportTree.InOrderTraversal(issue => sortedIssues.Add(issue)); // Get sorted issues using in-order traversal
 
-            // Add each issue to the ListView
             foreach (var issue in sortedIssues)
             {
-                ListViewItem item = new ListViewItem(issue.RequestId); // Create ListView item with RequestId
-                item.SubItems.Add(issue.Category); // Add the Category as a subitem
-                item.SubItems.Add(issue.Description); // Add the Description as a subitem
-
-                // Check if the status is "COMPLETE", otherwise assign a random status
-                if (!issue.Status.Contains("COMPLETE"))
+                // Update the status logically
+                if (issue.Status == "PENDING - INVESTIGATION NOT STARTED")
                 {
-                    issue.Status = statuses[random.Next(statuses.Length)];
+                    issue.Status = "PROCESSING - INVESTIGATION UNDERWAY"; // Move to "PROCESSING"
+                }
+                else if (issue.Status == "PROCESSING - INVESTIGATION UNDERWAY")
+                {
+                    if (random.Next(0, 3) == 0) // 1/3 chance to mark as "COMPLETE"
+                    {
+                        issue.Status = "COMPLETE - INVESTIGATION COMPLETED";
+                    }
                 }
 
-                item.SubItems.Add(issue.Status); // Add the current status of the issue
+                // Create ListView item
+                ListViewItem item = new ListViewItem(issue.RequestId);
+                item.SubItems.Add(issue.Category);
+                item.SubItems.Add(issue.Description);
+                item.SubItems.Add(issue.Status);
 
-                // Set the color of the status based on the value
-                switch (issue.Status.Split(' ')[0])  // Get the first part of the status (e.g., "PROCESSING", "PENDING", "COMPLETE")
+                // Set color based on status
+                switch (issue.Status.Split(' ')[0])
                 {
                     case "COMPLETE":
-                        item.ForeColor = System.Drawing.Color.Green; // Green for "COMPLETE"
-                        break;
-                    case "PENDING":
-                        item.ForeColor = System.Drawing.Color.Red; // Red for "PENDING"
+                        item.ForeColor = Color.Green;
                         break;
                     case "PROCESSING":
-                        item.ForeColor = System.Drawing.Color.Orange; // Orange for "PROCESSING"
+                        item.ForeColor = Color.Orange;
                         break;
-                    default:
-                        item.ForeColor = System.Drawing.Color.Black; // Default color (black) for any other status
+                    case "PENDING":
+                        item.ForeColor = Color.Red;
                         break;
                 }
 
-                statusLst.Items.Add(item); // Add the item to the ListView
+                statusLst.Items.Add(item);
             }
         }
-
-        private void UpdateIssueStatus(string requestId)
-        {
-            // Find the issue by RequestId
-            IssueDetails issueToUpdate = reportTree.Find(requestId);
-            if (issueToUpdate != null)
-            {
-                // Check if the status is already COMPLETE
-                if (issueToUpdate.Status.Contains("COMPLETE"))
-                {
-                    // If it's complete, don't change it
-                    return;
-                }
-
-                // Otherwise, assign a new random status from the statuses array
-                issueToUpdate.Status = statuses[random.Next(statuses.Length)];
-
-                // Reload the ListView to reflect the new status
-                LoadIssueIds();
-            }
-            else
-            {
-                MessageBox.Show("Issue not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+      
 
         //--------------------------------------------------------------------------------------------------------//
         /// <summary>

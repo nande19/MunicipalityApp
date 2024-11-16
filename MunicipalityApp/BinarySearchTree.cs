@@ -15,7 +15,9 @@ namespace MunicipalityApp
             public Node Left;  // Pointer to the left child node
             public Node Right;  // Pointer to the right child node
 
+
             // Constructor to initialize a new node with the provided data
+
             public Node(T data)
             {
                 Data = data;
@@ -33,7 +35,6 @@ namespace MunicipalityApp
         {
             root = Insert(root, value);  // Call the private recursive insert method
         }
-
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
@@ -61,7 +62,6 @@ namespace MunicipalityApp
             // Return the unchanged node pointer
             return node;
         }
-
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
@@ -71,7 +71,6 @@ namespace MunicipalityApp
         {
             InOrderTraversal(root, action);  // Call the private recursive in-order traversal method
         }
-
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
@@ -91,7 +90,6 @@ namespace MunicipalityApp
             // Recursively traverse the right subtree
             InOrderTraversal(node.Right, action);
         }
-
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
