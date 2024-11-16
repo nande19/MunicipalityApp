@@ -183,20 +183,29 @@ namespace MunicipalityApp
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            // Create an instance of the Start form (or retrieve it if already instantiated)
-            Start startForm = Application.OpenForms.OfType<Start>().FirstOrDefault();
+            try
+            {
+                // Close the current ViewingIssues form immediately
+                this.Close();
 
-            // Create an instance of the ReportIssues form and pass the Start form reference
-            if (startForm != null)
-            {
-                ReportIssues reportForm = new ReportIssues(startForm); // Pass Start form
-                this.Hide();  // Hide the current ViewingIssues form
-                reportForm.ShowDialog(); // Show the ReportIssues form as a modal dialog
-                this.Show(); // Optionally, show the ViewingIssues form again after ReportIssues is closed
+                // Create an instance of the Start form (or retrieve it if already instantiated)
+                Start startForm = Application.OpenForms.OfType<Start>().FirstOrDefault();
+
+                // Create an instance of the ReportIssues form and pass the Start form reference
+                if (startForm != null)
+                {
+                    ReportIssues reportForm = new ReportIssues(startForm); // Pass Start form
+                    reportForm.ShowDialog(); // Show the ReportIssues form as a modal dialog
+                }
+                else
+                {
+                    MessageBox.Show("Start form not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Start form not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Handle any errors that occur during the button click processing
+                MessageBox.Show($"Error while navigating to Report Issues: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

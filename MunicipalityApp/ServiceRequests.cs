@@ -7,12 +7,21 @@ namespace MunicipalityApp
 {
     public partial class ServiceRequests : Form
     {
-        private List<IssueDetails> issueList;
-
+        private BinarySearchTree<IssueDetails> reportTree; // BST to manage service requests
+        private string[] statuses = { "Processing", "Pending", "Complete" };
+        private Random random = new Random();
         public ServiceRequests(List<IssueDetails> issues)
         {
             InitializeComponent();
-            issueList = issues;
+            reportTree = new BinarySearchTree<IssueDetails>();
+
+            // Insert issues into the BST
+            foreach (var issue in issues)
+            {
+                issue.GenerateRequestId(random); // Generate formatted RequestId
+                reportTree.Insert(issue);
+            }
+
             LoadIssueIds();
         }
 
@@ -20,13 +29,11 @@ namespace MunicipalityApp
         {
             statusLst.Items.Clear(); // Clear previous items
 
+            // Perform an in-order traversal to fetch issues in sorted order
+            List<IssueDetails> sortedIssues = new List<IssueDetails>();
+            reportTree.InOrderTraversal(issue => sortedIssues.Add(issue));
 
-            // Define the possible statuses
-            string[] statuses = { "Processing", "Pending", "Complete" };
-            Random random = new Random();
-
-            // Loop through each issue and add its details to the ListView
-            foreach (var issue in issueList)
+            foreach (var issue in sortedIssues)
             {
                 // Create a new ListViewItem with the RequestId as the text
                 ListViewItem item = new ListViewItem(issue.RequestId);
@@ -43,7 +50,6 @@ namespace MunicipalityApp
             }
         }
 
-        // Back button click event
         private void backBtn_Click(object sender, EventArgs e)
         {
             try
@@ -62,5 +68,79 @@ namespace MunicipalityApp
                 MessageBox.Show($"Error while closing the form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string searchId = searchTxt.Text.Trim(); // Input from TextBox
+
+                // Validate input
+                if (string.IsNullOrEmpty(searchId))
+                {
+                    MessageBox.Show("Please enter a valid Request ID.", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                IssueDetails foundIssue = null;
+
+                // Perform BST search
+                reportTree.InOrderTraversal(issue =>
+                {
+                    if (issue.RequestId.Equals(searchId, StringComparison.OrdinalIgnoreCase))
+                    {
+                        foundIssue = issue;
+                    }
+                });
+
+                // Display result in ListView
+                statusLst.Items.Clear();
+
+                if (foundIssue != null)
+                {
+                    ListViewItem item = new ListViewItem(foundIssue.RequestId);
+                    item.SubItems.Add(foundIssue.Category);
+                    item.SubItems.Add(foundIssue.Description);
+                    item.SubItems.Add(statuses[random.Next(statuses.Length)]); // Random status
+                    statusLst.Items.Add(item);
+                }
+                else
+                {
+                    MessageBox.Show("No results found for the given Request ID.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (NullReferenceException nullEx)
+            {
+                MessageBox.Show($"An error occurred while accessing the data: {nullEx.Message}", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (FormatException formatEx)
+            {
+                MessageBox.Show($"The input format is incorrect: {formatEx.Message}", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Unexpected Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Clear the search TextBox
+                searchTxt.Clear();
+
+                // Clear the ListView
+                statusLst.Items.Clear();
+
+                // Optionally, reload all issues from the BST to display them again
+                LoadIssueIds();
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors that occur during the clear process
+                MessageBox.Show($"An error occurred while clearing the search: {ex.Message}", "Clear Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
-}
+    }

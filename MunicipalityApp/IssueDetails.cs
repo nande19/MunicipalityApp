@@ -11,7 +11,7 @@ namespace MunicipalityApp
         /// <summary>
         /// variables are here, this is where data is stored
         /// </summary>
-    public class IssueDetails
+    public class IssueDetails : IComparable<IssueDetails>
     {
         public string RequestId { get; set; } // Unique identifier
         public string Location { get; set; }
@@ -27,13 +27,25 @@ namespace MunicipalityApp
             Description = description;
             Attachments = attachments;
         }
+        public void GenerateRequestId(Random random)
+        {
+            char letter = (char)('A' + random.Next(0, 26)); // Random letter A-Z
+            int number = random.Next(10, 100);             // Random number 10-99
+            RequestId = $"{letter}{number}";              // Format: Letter + Two Numbers
+        }
 
-        // Method to display the issue details (optional for debugging or display purposes)
+        // Implementing the IComparable<IssueDetails> interface
+        public int CompareTo(IssueDetails other)
+        {
+            if (other == null) return 1;
+            return string.Compare(this.RequestId, other.RequestId, StringComparison.Ordinal);
+        }
+
         public override string ToString()
         {
-            return $"Location: {Location}, Category: {Category}, Description: {Description}, Attachments: {Attachments.Count}";
+            return $"RequestId: {RequestId}, Location: {Location}, Category: {Category}, Description: {Description}, Attachments: {Attachments.Count}";
         }
     }
 }
-        //---------------------------------------- END OF FILE -------------------------------------------------------//
+//---------------------------------------- END OF FILE -------------------------------------------------------//
 
