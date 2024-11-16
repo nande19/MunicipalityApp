@@ -8,7 +8,10 @@ namespace MunicipalityApp
     public partial class ServiceRequests : Form
     {
         private BinarySearchTree<IssueDetails> reportTree; // Binary Search Tree to manage service requests
-        private string[] statuses = { "Processing", "Pending", "Complete" }; // Array of possible statuses for issues
+        private string[] statuses = { 
+            "PROCESSING - INVESTIGATION UNDERWAY", 
+            "PENDING - INVESTIGATION NOT STARTED", 
+            "COMPLETE - INVESTIGATION COMPLETED" }; // Array of possible statuses for issues
         private Random random = new Random(); // Random object to generate random statuses
 
         //--------------------------------------------------------------------------------------------------------//
