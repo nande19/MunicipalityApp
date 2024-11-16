@@ -37,10 +37,12 @@
             this.searchBtn = new System.Windows.Forms.Button();
             this.servicerequestLbl = new System.Windows.Forms.Label();
             this.backBtn = new System.Windows.Forms.Button();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // statusLst
             // 
+            this.statusLst.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.statusLst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.requestID,
             this.submittedRequest,
@@ -48,9 +50,9 @@
             this.requestStatus});
             this.statusLst.GridLines = true;
             this.statusLst.HideSelection = false;
-            this.statusLst.Location = new System.Drawing.Point(111, 196);
+            this.statusLst.Location = new System.Drawing.Point(12, 193);
             this.statusLst.Name = "statusLst";
-            this.statusLst.Size = new System.Drawing.Size(909, 338);
+            this.statusLst.Size = new System.Drawing.Size(1098, 338);
             this.statusLst.TabIndex = 0;
             this.statusLst.UseCompatibleStateImageBehavior = false;
             this.statusLst.View = System.Windows.Forms.View.Details;
@@ -77,11 +79,11 @@
             // 
             // searchTxt
             // 
-            this.searchTxt.Location = new System.Drawing.Point(353, 133);
+            this.searchTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.searchTxt.Location = new System.Drawing.Point(360, 113);
             this.searchTxt.Name = "searchTxt";
             this.searchTxt.Size = new System.Drawing.Size(161, 22);
             this.searchTxt.TabIndex = 3;
-            this.searchTxt.TextChanged += new System.EventHandler(this.searchTxt_TextChanged);
             // 
             // searchBtn
             // 
@@ -94,6 +96,7 @@
             this.searchBtn.TabIndex = 23;
             this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = false;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // servicerequestLbl
             // 
@@ -119,6 +122,20 @@
             this.backBtn.TabIndex = 25;
             this.backBtn.Text = "Back to Main";
             this.backBtn.UseVisualStyleBackColor = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            // 
+            // clearBtn
+            // 
+            this.clearBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.clearBtn.BackColor = System.Drawing.Color.LimeGreen;
+            this.clearBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearBtn.Location = new System.Drawing.Point(827, 100);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(132, 35);
+            this.clearBtn.TabIndex = 26;
+            this.clearBtn.Text = "Clear";
+            this.clearBtn.UseVisualStyleBackColor = false;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // ServiceRequests
             // 
@@ -127,6 +144,7 @@
             this.BackColor = System.Drawing.Color.Teal;
             this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
             this.ClientSize = new System.Drawing.Size(1122, 631);
+            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.servicerequestLbl);
             this.Controls.Add(this.searchBtn);
@@ -150,5 +168,6 @@
         private System.Windows.Forms.ColumnHeader requestStatus;
         private System.Windows.Forms.Label servicerequestLbl;
         private System.Windows.Forms.Button backBtn;
+        private System.Windows.Forms.Button clearBtn;
     }
 }

@@ -180,6 +180,37 @@ namespace MunicipalityApp
                 MessageBox.Show($"Error processing the selected issue: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        //--------------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// Event handler for the "Add" button click event. Opens the ReportIssues form to add a new issue.
+        /// </summary>
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Close the current ViewingIssues form immediately
+                this.Close();
+
+                // Create an instance of the Start form (or retrieve it if already instantiated)
+                Start startForm = Application.OpenForms.OfType<Start>().FirstOrDefault();
+
+                // Create an instance of the ReportIssues form and pass the Start form reference
+                if (startForm != null)
+                {
+                    ReportIssues reportForm = new ReportIssues(startForm); // Pass Start form
+                    reportForm.ShowDialog(); // Show the ReportIssues form as a modal dialog
+                }
+                else
+                {
+                    MessageBox.Show("Start form not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors that occur during the button click processing
+                MessageBox.Show($"Error while navigating to Report Issues: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 //---------------------------------------- END OF FILE -------------------------------------------------------//

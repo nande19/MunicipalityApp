@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MunicipalityApp
@@ -101,6 +102,38 @@ namespace MunicipalityApp
                 string category = categoryBox.SelectedItem?.ToString();
                 string description = descriptionTxt.Text;
 
+                // Get selected priority from the ComboBox, and set it to null if not selected
+                string selectedPriority = priorityLevel.SelectedItem?.ToString();
+
+                int priority = 0; // Default priority if not selected
+
+                // Handle priority conversion
+                if (!string.IsNullOrEmpty(selectedPriority))
+                {
+                    // You can use a mapping approach or manually handle it
+                    switch (selectedPriority.ToLower())
+                    {
+                        case "low":
+                            priority = 1; // Low priority
+                            break;
+                        case "medium":
+                            priority = 2; // Medium priority
+                            break;
+                        case "high":
+                            priority = 3; // High priority
+                            break;
+                        default:
+                            MessageBox.Show("Invalid priority value. Please select a valid priority.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a priority.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;  // Exit if no priority is selected
+                }
+
+                // Check if required fields are filled
                 if (string.IsNullOrEmpty(location) || string.IsNullOrEmpty(category) || string.IsNullOrEmpty(description))
                 {
                     MessageBox.Show("Please fill in all required fields: Location, Category, and Description.",
@@ -108,14 +141,19 @@ namespace MunicipalityApp
                     return;
                 }
 
+                // Validate attachment
                 if (attachments.Count == 0)
                 {
                     MessageBox.Show("Adding an image is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;  // Exit the method if no attachment is added
                 }
 
-                IssueDetails newIssue = new IssueDetails(location, category, description, attachments);
+                // Create a new issue with the selected priority
+                IssueDetails newIssue = new IssueDetails(location, category, description, attachments, priority);
                 issueList.Add(newIssue);  // Add the new issue to the shared issueList
+
+                // Sort the issue list by priority (high to low)
+                issueList = issueList.OrderBy(i => i.Priority).ToList();  // Assuming lower values mean higher priority
 
                 progressBar.Value = 100;
 
@@ -123,6 +161,7 @@ namespace MunicipalityApp
 
                 ClearForm();
 
+                // Navigate to ViewingIssues form
                 ViewingIssues viewingIssuesForm = new ViewingIssues(issueList);
                 this.Hide();
                 viewingIssuesForm.Show();
@@ -132,7 +171,6 @@ namespace MunicipalityApp
                 MessageBox.Show($"An error occurred while saving the issue: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         //--------------------------------------------------------------------------------------------------------//
 
@@ -254,6 +292,8 @@ namespace MunicipalityApp
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+      
     }
 }
 
