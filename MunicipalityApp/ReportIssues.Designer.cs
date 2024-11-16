@@ -225,6 +225,7 @@
             // 
             // priorityLevel
             // 
+            this.priorityLevel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.priorityLevel.FormattingEnabled = true;
             this.priorityLevel.Items.AddRange(new object[] {
             "High",
@@ -273,6 +274,7 @@
             this.Controls.Add(this.locationLbl);
             this.Name = "ReportIssues";
             this.Text = "Report Issues";
+            this.Load += new System.EventHandler(this.ReportIssues_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imagePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

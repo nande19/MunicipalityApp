@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,9 +9,9 @@ namespace MunicipalityApp
     public partial class ServiceRequests : Form
     {
         private BinarySearchTree<IssueDetails> reportTree; // Binary Search Tree to manage service requests
-        private string[] statuses = { 
-            "PROCESSING - INVESTIGATION UNDERWAY", 
-            "PENDING - INVESTIGATION NOT STARTED", 
+        private string[] statuses = {
+            "PROCESSING - INVESTIGATION UNDERWAY",
+            "PENDING - INVESTIGATION NOT STARTED",
             "COMPLETE - INVESTIGATION COMPLETED" }; // Array of possible statuses for issues
         private Random random = new Random(); // Random object to generate random statuses
 
@@ -41,54 +42,48 @@ namespace MunicipalityApp
         {
             statusLst.Items.Clear(); // Clear the ListView before adding new items
 
-            // Perform an in-order traversal to fetch issues in sorted order
             List<IssueDetails> sortedIssues = new List<IssueDetails>();
             reportTree.InOrderTraversal(issue => sortedIssues.Add(issue)); // Get sorted issues using in-order traversal
 
-            // Add each issue to the ListView
             foreach (var issue in sortedIssues)
             {
-                ListViewItem item = new ListViewItem(issue.RequestId); // Create ListView item with RequestId
-                item.SubItems.Add(issue.Category); // Add the Category as a subitem
-                item.SubItems.Add(issue.Description); // Add the Description as a subitem
+                // Update the status logically
+                if (issue.Status == "PENDING - INVESTIGATION NOT STARTED")
+                {
+                    issue.Status = "PROCESSING - INVESTIGATION UNDERWAY"; // Move to "PROCESSING"
+                }
+                else if (issue.Status == "PROCESSING - INVESTIGATION UNDERWAY")
+                {
+                    if (random.Next(0, 3) == 0) // 1/3 chance to mark as "COMPLETE"
+                    {
+                        issue.Status = "COMPLETE - INVESTIGATION COMPLETED";
+                    }
+                }
 
-                item.SubItems.Add(issue.Status); // Add the current status of the issue
+                // Create ListView item
+                ListViewItem item = new ListViewItem(issue.RequestId);
+                item.SubItems.Add(issue.Category);
+                item.SubItems.Add(issue.Description);
+                item.SubItems.Add(issue.Status);
 
-                // Set the color of the status based on the value
-                switch (issue.Status.Split(' ')[0])  // Get the first part of the status (e.g., "PROCESSING", "PENDING", "COMPLETE")
+                // Set color based on status
+                switch (issue.Status.Split(' ')[0])
                 {
                     case "COMPLETE":
-                        item.ForeColor = System.Drawing.Color.Green; // Green for "COMPLETE"
-                        break;
-                    case "PENDING":
-                        item.ForeColor = System.Drawing.Color.Red; // Red for "PENDING"
+                        item.ForeColor = Color.Green;
                         break;
                     case "PROCESSING":
-                        item.ForeColor = System.Drawing.Color.Orange; // Orange for "PROCESSING"
+                        item.ForeColor = Color.Orange;
                         break;
-                    default:
-                        item.ForeColor = System.Drawing.Color.Black; // Default color (black) for any other status
+                    case "PENDING":
+                        item.ForeColor = Color.Red;
                         break;
                 }
 
-                statusLst.Items.Add(item); // Add the item to the ListView
-            }
-        
-        }
-        private void UpdateIssueStatus(string requestId, string newStatus)
-        {
-            // Find the issue by RequestId
-            IssueDetails issueToUpdate = reportTree.Find(requestId); // You may need to implement Find in your BinarySearchTree class
-            if (issueToUpdate != null)
-            {
-                issueToUpdate.Status = newStatus; // Update the status
-                LoadIssueIds(); // Reload the ListView to reflect the new status
-            }
-            else
-            {
-                MessageBox.Show("Issue not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                statusLst.Items.Add(item);
             }
         }
+      
 
         //--------------------------------------------------------------------------------------------------------//
         /// <summary>
@@ -150,8 +145,22 @@ namespace MunicipalityApp
                     ListViewItem item = new ListViewItem(foundIssue.RequestId); // Create ListView item with RequestId
                     item.SubItems.Add(foundIssue.Category); // Add the Category as a subitem
                     item.SubItems.Add(foundIssue.Description); // Add the Description as a subitem
-                    item.SubItems.Add(statuses[random.Next(statuses.Length)]); // Add a random status
+                    item.SubItems.Add(foundIssue.Status); // Preserve the original status
                     statusLst.Items.Add(item); // Add the item to the ListView
+
+                    // Set color based on status
+                    switch (foundIssue.Status.Split(' ')[0])
+                    {
+                        case "COMPLETE":
+                            item.ForeColor = Color.Green;
+                            break;
+                        case "PROCESSING":
+                            item.ForeColor = Color.Orange;
+                            break;
+                        case "PENDING":
+                            item.ForeColor = Color.Red;
+                            break;
+                    }
                 }
                 else
                 {
@@ -171,6 +180,7 @@ namespace MunicipalityApp
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Unexpected Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         //--------------------------------------------------------------------------------------------------------//
         /// <summary>

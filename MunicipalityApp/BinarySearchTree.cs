@@ -90,11 +90,11 @@ namespace MunicipalityApp
             // Recursively traverse the right subtree
             InOrderTraversal(node.Right, action);
         }
-         //--------------------------------------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------------//
 
-            /// <summary>
-            /// Public method to find a node by its RequestId.
-            /// </summary>
+        /// <summary>
+        /// Public method to find a node by its RequestId.
+        /// </summary>
         public T Find(string requestId)
         {
             return Find(root, requestId);

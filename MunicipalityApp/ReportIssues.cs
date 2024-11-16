@@ -16,6 +16,7 @@ namespace MunicipalityApp
 
         private Start startForm;  // Reference to the Start form
         private ViewingIssues viewForm;
+        private readonly ResizeHandler resizeHandler;
 
         //--------------------------------------------------------------------------------------------------------//
         /// <summary>
@@ -27,10 +28,26 @@ namespace MunicipalityApp
             InitializeComponent();
             this.startForm = startForm;  // Save the Start form reference
             this.issueList = startForm.issueList; // Use the shared issueList from the Start form
+            resizeHandler = new ResizeHandler();  // Initialize ResizeHandler
 
         }
+//--------------------------------------------------------------------------------------------------------//
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ReportIssues_Load(object sender, EventArgs e)
+        {
+            // Add controls to ResizeHandler for resizing
+            resizeHandler.AddControl(locationTxt);
+            resizeHandler.AddControl(categoryBox);
+            resizeHandler.AddControl(descriptionTxt);
+            resizeHandler.AddControl(imagePicture);
+            resizeHandler.AddControl(saveBtn);
+            resizeHandler.AddControl(backBtn);
+            resizeHandler.AddControl(attachBtn);
+            resizeHandler.AddControl(progressBar);
+        }
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
@@ -293,7 +310,7 @@ namespace MunicipalityApp
             }
         }
 
-      
+       
     }
 }
 
