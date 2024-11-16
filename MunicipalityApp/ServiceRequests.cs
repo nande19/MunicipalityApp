@@ -145,8 +145,22 @@ namespace MunicipalityApp
                     ListViewItem item = new ListViewItem(foundIssue.RequestId); // Create ListView item with RequestId
                     item.SubItems.Add(foundIssue.Category); // Add the Category as a subitem
                     item.SubItems.Add(foundIssue.Description); // Add the Description as a subitem
-                    item.SubItems.Add(statuses[random.Next(statuses.Length)]); // Add a random status
+                    item.SubItems.Add(foundIssue.Status); // Preserve the original status
                     statusLst.Items.Add(item); // Add the item to the ListView
+
+                    // Set color based on status
+                    switch (foundIssue.Status.Split(' ')[0])
+                    {
+                        case "COMPLETE":
+                            item.ForeColor = Color.Green;
+                            break;
+                        case "PROCESSING":
+                            item.ForeColor = Color.Orange;
+                            break;
+                        case "PENDING":
+                            item.ForeColor = Color.Red;
+                            break;
+                    }
                 }
                 else
                 {
@@ -166,6 +180,7 @@ namespace MunicipalityApp
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Unexpected Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         //--------------------------------------------------------------------------------------------------------//
         /// <summary>
