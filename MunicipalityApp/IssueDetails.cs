@@ -22,19 +22,28 @@ namespace MunicipalityApp
         public string Description { get; set; }        // A detailed description of the issue
 
         public List<string> Attachments { get; set; } // List of file paths for attached images/documents
+        public int Priority { get; set; }      // Priority level of the issue (e.g., 1 = high priority)
+
+        public string Status { get; set; } // Status can change
 
         //--------------------------------------------------------------------------------------------------------//
 
         /// <summary>
         /// Constructor to initialize a new IssueDetails object with given values.
         /// </summary>
-        public IssueDetails(string location, string category, string description, List<string> attachments)
+        public IssueDetails(string location, string category, string description, List<string> attachments, int priority)
         {
-            RequestId = Guid.NewGuid().ToString(); // Generate a unique ID
+           // RequestId = Guid.NewGuid().ToString(); // Generate a unique ID
             Location = location;
             Category = category;
             Description = description;
             Attachments = attachments;
+            Priority = priority;
+
+            Status = "PENDING - INVESTIGATION NOT STARTED"; // Default status
+
+            // Generate RequestId only once
+            GenerateRequestId(new Random());
         }
 
         //--------------------------------------------------------------------------------------------------------//
@@ -44,9 +53,10 @@ namespace MunicipalityApp
         /// </summary>
         public void GenerateRequestId(Random random)
         {
-            char letter = (char)('A' + random.Next(0, 26)); // Random letter A-Z
-            int number = random.Next(10, 100);             // Random number 10-99
-            RequestId = $"{letter}{number}";              // Format: Letter + Two Numbers
+            if (string.IsNullOrEmpty(RequestId)) // Only generate if not already set
+            {
+                RequestId = "REQ" + random.Next(1000, 9999).ToString(); // Example ID generation logic
+            }         
         }
         //--------------------------------------------------------------------------------------------------------//
 

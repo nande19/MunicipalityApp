@@ -52,11 +52,41 @@ namespace MunicipalityApp
                 item.SubItems.Add(issue.Category); // Add the Category as a subitem
                 item.SubItems.Add(issue.Description); // Add the Description as a subitem
 
-                // Generate a random status and add it as a subitem
-                string randomStatus = statuses[random.Next(statuses.Length)];
-                item.SubItems.Add(randomStatus); // Request Status column
+                item.SubItems.Add(issue.Status); // Add the current status of the issue
+
+                // Set the color of the status based on the value
+                switch (issue.Status.Split(' ')[0])  // Get the first part of the status (e.g., "PROCESSING", "PENDING", "COMPLETE")
+                {
+                    case "COMPLETE":
+                        item.ForeColor = System.Drawing.Color.Green; // Green for "COMPLETE"
+                        break;
+                    case "PENDING":
+                        item.ForeColor = System.Drawing.Color.Red; // Red for "PENDING"
+                        break;
+                    case "PROCESSING":
+                        item.ForeColor = System.Drawing.Color.Orange; // Orange for "PROCESSING"
+                        break;
+                    default:
+                        item.ForeColor = System.Drawing.Color.Black; // Default color (black) for any other status
+                        break;
+                }
 
                 statusLst.Items.Add(item); // Add the item to the ListView
+            }
+        
+        }
+        private void UpdateIssueStatus(string requestId, string newStatus)
+        {
+            // Find the issue by RequestId
+            IssueDetails issueToUpdate = reportTree.Find(requestId); // You may need to implement Find in your BinarySearchTree class
+            if (issueToUpdate != null)
+            {
+                issueToUpdate.Status = newStatus; // Update the status
+                LoadIssueIds(); // Reload the ListView to reflect the new status
+            }
+            else
+            {
+                MessageBox.Show("Issue not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

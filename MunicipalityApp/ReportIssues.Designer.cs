@@ -42,6 +42,8 @@
             this.imagePicture = new System.Windows.Forms.PictureBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.viewBtn = new System.Windows.Forms.Button();
+            this.priorityLevel = new System.Windows.Forms.ComboBox();
+            this.prioritylbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imagePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -221,6 +223,31 @@
             this.viewBtn.UseVisualStyleBackColor = false;
             this.viewBtn.Click += new System.EventHandler(this.viewBtn_Click);
             // 
+            // priorityLevel
+            // 
+            this.priorityLevel.FormattingEnabled = true;
+            this.priorityLevel.Items.AddRange(new object[] {
+            "High",
+            "Medium",
+            "Low"});
+            this.priorityLevel.Location = new System.Drawing.Point(615, 188);
+            this.priorityLevel.Name = "priorityLevel";
+            this.priorityLevel.Size = new System.Drawing.Size(121, 24);
+            this.priorityLevel.TabIndex = 19;
+            // 
+            // prioritylbl
+            // 
+            this.prioritylbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.prioritylbl.AutoSize = true;
+            this.prioritylbl.BackColor = System.Drawing.Color.Transparent;
+            this.prioritylbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prioritylbl.ForeColor = System.Drawing.Color.Red;
+            this.prioritylbl.Location = new System.Drawing.Point(612, 153);
+            this.prioritylbl.Name = "prioritylbl";
+            this.prioritylbl.Size = new System.Drawing.Size(158, 32);
+            this.prioritylbl.TabIndex = 20;
+            this.prioritylbl.Text = "     (OPTIONAL) \r\nSelect a priority level:";
+            // 
             // ReportIssues
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -228,6 +255,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = global::MunicipalityApp.Properties.Resources.website_Tshwane;
             this.ClientSize = new System.Drawing.Size(782, 653);
+            this.Controls.Add(this.prioritylbl);
+            this.Controls.Add(this.priorityLevel);
             this.Controls.Add(this.viewBtn);
             this.Controls.Add(this.imagePicture);
             this.Controls.Add(this.saveBtn);
@@ -265,5 +294,7 @@
         private System.Windows.Forms.PictureBox imagePicture;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button viewBtn;
+        private System.Windows.Forms.ComboBox priorityLevel;
+        private System.Windows.Forms.Label prioritylbl;
     }
 }
