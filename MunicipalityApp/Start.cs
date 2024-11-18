@@ -14,7 +14,7 @@ namespace MunicipalityApp
     {
         // List to store issues (accessible across forms)
         public List<IssueDetails> issueList = new List<IssueDetails>();
-        private ResizeHandler resizeHandler = new ResizeHandler();
+//        private ResizeHandler resizeHandler = new ResizeHandler();
 
         public Start()
         {
@@ -28,9 +28,9 @@ namespace MunicipalityApp
         private void Start_Load(object sender, EventArgs e)
         {
             // Add controls to the ResizeHandler
-            resizeHandler.AddControl(reportIssuesBtn);
-            resizeHandler.AddControl(eventsBtn);
-            resizeHandler.AddControl(serviceRequestBtn);
+            //resizeHandler.AddControl(reportIssuesBtn);
+            //resizeHandler.AddControl(eventsBtn);
+            //resizeHandler.AddControl(serviceRequestBtn);
 
         }
         //--------------------------------------------------------------------------------------------------------//
@@ -40,8 +40,8 @@ namespace MunicipalityApp
         /// </summary>
         protected override void OnResize(EventArgs e)
         {
-            base.OnResize(e);  // Ensure base class functionality is preserved
-            resizeHandler.ResizeControls(this);  // Dynamically resize controls on the form
+            //base.OnResize(e);  // Ensure base class functionality is preserved
+            //resizeHandler.ResizeControls(this);  // Dynamically resize controls on the form
         }
         //--------------------------------------------------------------------------------------------------------//
 
