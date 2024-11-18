@@ -61,7 +61,6 @@
     <Compile Include="Events.Designer.cs">
       <DependentUpon>Events.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graph.cs" />
     <Compile Include="IssueDetails.cs" />
     <Compile Include="MinHeap.cs" />
     <Compile Include="PriorityQueue.cs" />
